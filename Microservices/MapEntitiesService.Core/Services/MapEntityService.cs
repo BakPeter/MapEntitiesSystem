@@ -5,11 +5,25 @@ namespace MapEntitiesService.Core.Services
 {
     public class MapEntityService : IMapEntityService
     {
-        public Task<bool> HandleEntity(Entity entity)
+        public async Task<string> HandleEntityAsync(Entity entity)
         {
-            System.Console.WriteLine(entity);
-        
-            return Task.FromResult(true);
+            var task = await Task.Run(() => "Operation successful");
+            return task;
+        }
+
+        public Task<Entity[]> GetAllEntitiesAsync()
+        {
+            var result = Task.Run(() =>
+            {
+                var entities = new Entity[]
+                {
+                    new() {Lat = 10,Lon = 20},
+                    new()  {Lat = 20,Lon = 40}
+                };
+                return entities;
+            });
+
+            return result;
         }
     }
 }

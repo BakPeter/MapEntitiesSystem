@@ -4,6 +4,7 @@ namespace MapEntitiesService.Core.Services.Interfaces
 {
     public interface IMapEntityService
     {
-        Task<bool> HandleEntity(Entity entity);
+        Task<string> HandleEntityAsync(Entity entity);
+        Task<Entity[]> GetAllEntitiesAsync();
     }
 }
