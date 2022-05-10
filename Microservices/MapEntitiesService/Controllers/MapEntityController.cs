@@ -1,4 +1,5 @@
-﻿using MapEntitiesService.Core.Model;
+﻿using MapEntitiesService.Core.DTO;
+using MapEntitiesService.Core.Model;
 using MapEntitiesService.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +19,15 @@ namespace MapEntitiesService.Controllers
         [HttpGet]
         public async Task<ActionResult<Entity[]>> GetAllEntities()
         {
-            var entities =  await _mapEntityService.GetAllEntitiesAsync();
+            var entities = await _mapEntityService.GetAllEntitiesAsync();
             return entities;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<HandleEntityResponse>> HandleEntity([FromBody] HandleEntityRequest handleEntityRequest)
+        {
+            var result = await _mapEntityService.HandleEntityAsync(handleEntityRequest);
+            return Ok(result);
         }
     }
 }
