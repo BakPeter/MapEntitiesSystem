@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MapEntitiesService.Core\MapEntitiesService.Core.csproj" />
+    <ProjectReference Include="..\MapEntitiesService.Infrastructure\MapEntitiesService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

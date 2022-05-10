@@ -1,33 +1,18 @@
-﻿using MapEntitiesService.Core.DTO;
-using MapEntitiesService.Core.Model;
+﻿using MapEntitiesService.Core.Model;
 using MapEntitiesService.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MapEntitiesService.Controllers
+namespace MapEntitiesService.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class MapEntityController : Controller
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class MapEntityController : Controller
-    {
-        private readonly IMapEntityService _mapEntityService;
+    private readonly IMapEntityService _mapEntityService;
 
-        public MapEntityController(IMapEntityService mapEntityService)
-        {
-            _mapEntityService = mapEntityService;
-        }
+    public MapEntityController(IMapEntityService mapEntityService) => _mapEntityService = mapEntityService;
 
-        [HttpGet]
-        public async Task<ActionResult<Entity[]>> GetAllEntities()
-        {
-            var entities = await _mapEntityService.GetAllEntitiesAsync();
-            return entities;
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<HandleEntityResponse>> HandleEntity([FromBody] HandleEntityRequest handleEntityRequest)
-        {
-            var result = await _mapEntityService.HandleEntityAsync(handleEntityRequest);
-            return Ok(result);
-        }
-    }
+    [HttpPost]
+    public async Task<ResultModel> HandleEntityAsync([FromForm] MapEntityModel mapEntityModel) =>
+        await _mapEntityService.HandleMapEntityAsync(mapEntityModel);
 }
