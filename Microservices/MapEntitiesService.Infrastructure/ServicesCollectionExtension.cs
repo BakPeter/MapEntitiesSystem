@@ -1,5 +1,4 @@
 ﻿using MapEntitiesService.Core.Configurations;
-using MapEntitiesService.Core.Model;
 using MapEntitiesService.Core.Services;
 using MapEntitiesService.Core.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;

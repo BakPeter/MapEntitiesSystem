@@ -16,9 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MessageBroker.Core">
-      <HintPath>..\MessageBroker.Core.dll</HintPath>
-    </Reference>
     <Reference Include="MessageBroker.Infrastructure">
       <HintPath>..\MessageBroker.Infrastructure.dll</HintPath>
     </Reference>

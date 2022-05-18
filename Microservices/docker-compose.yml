@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  message-broker:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+  mapentitiesservice:
+    image: ${DOCKER_REGISTRY-}mapentitiesservice
+    build:
+      context: .
+      dockerfile: MapEntitiesService/Dockerfile
+    ports:
+      - 8080:80
+      - 80443:443
+    depends_on: 
+      - message-broker
+networks:
+  entities-microservices:
