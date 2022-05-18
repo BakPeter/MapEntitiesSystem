@@ -2,5 +2,8 @@
 
 public record Settings
 {
-    public string? Param1 { get; set; }
+    public string BrokerName { get; set; } = string.Empty;
+    public string Topic { get; set; } = string.Empty;
+
+    public string HostName { get; set; } = string.Empty;
 }

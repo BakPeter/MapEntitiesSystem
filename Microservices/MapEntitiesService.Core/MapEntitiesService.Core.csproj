@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MessageBroker.Core">
+      <HintPath>..\MessageBroker.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

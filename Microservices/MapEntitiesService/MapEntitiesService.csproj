@@ -15,4 +15,10 @@
     <ProjectReference Include="..\MapEntitiesService.Infrastructure\MapEntitiesService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MessageBroker.Infrastructure">
+      <HintPath>..\MessageBroker.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
