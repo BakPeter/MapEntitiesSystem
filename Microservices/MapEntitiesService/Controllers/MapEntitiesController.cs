@@ -18,9 +18,9 @@ namespace MapEntitiesService.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<string>> HandleEntity([FromBody] Entity entity)
+        public async Task<ActionResult<string>> HandleEntity([FromBody] MapEntityModel entity)
         {
-            var result = await _mapEntityService.HandleEntityAsync(entity);
+            var result = await _mapEntityService.HandleMapEntityAsync(entity);
 
             return Ok(result);
             //if (result == true)
