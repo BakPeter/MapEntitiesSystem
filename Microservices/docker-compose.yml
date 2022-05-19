@@ -13,8 +13,7 @@ services:
       dockerfile: MapEntitiesService/Dockerfile
     ports:
       - 8080:80
-      - 80443:443
-    depends_on: 
+    depends_on:
       - message-broker
 networks:
   entities-microservices:
