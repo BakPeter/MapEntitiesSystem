@@ -11,5 +11,6 @@ public static class ServicesCollectionExtension
     {
         services.AddSingleton(settings);
         services.AddScoped<IMapEntityService, MapEntityService>();
+        services.AddSingleton<IMapEntityValidationService, MapEntityValidationService>();
     }
 }

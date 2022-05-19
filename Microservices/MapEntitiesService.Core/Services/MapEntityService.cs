@@ -10,15 +10,18 @@ public class MapEntityService : IMapEntityService
 {
     private readonly ILogger<MapEntityService> _logger;
     private readonly IPublisher _publisher;
+    private readonly IMapEntityValidationService _entityValidator;
     private readonly Settings _settings;
 
     public MapEntityService(
         ILogger<MapEntityService> logger,
         IPublisher publisher,
+        IMapEntityValidationService entityValidator,
         Settings settings)
     {
         _logger = logger;
         _publisher = publisher;
+        _entityValidator = entityValidator;
         _settings = settings;
     }
 
@@ -26,7 +29,12 @@ public class MapEntityService : IMapEntityService
     {
         try
         {
-            // Todo - publish to message broker (what,where)
+            var validationResult = _entityValidator.Validate(mapEntityModel);
+            if (!validationResult.Success)
+            {
+                return validationResult;
+            }
+
             _publisher.Publish(_settings.Topic, mapEntityModel.ToString());
             await Task.Delay(100);
             return new ResultModel(Success: true);
