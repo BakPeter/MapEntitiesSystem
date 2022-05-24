@@ -6,6 +6,9 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+    networks:
+      - main
+
   mapentitiesservice:
     image: ${DOCKER_REGISTRY-}mapentitiesservice
     build:
@@ -15,5 +18,9 @@ services:
       - 8080:80
     depends_on:
       - message-broker
+    networks:
+      - main
+
 networks:
-  entities-microservices:
+  main:
+    name: entities-network
