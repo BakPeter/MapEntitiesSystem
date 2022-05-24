@@ -31,7 +31,7 @@ add image minio to docker compose
 add and implement settings
 add and ServicesCollectionExtension
 create and test Model in MapsRepositoryService, name and Base64
-result models: get list names reuslt model, get a map resuly model, result model(for crud operations)
+result models: get list names reuslt model, get a map resuly model, result model(for services operations)
 services:
 	IMapsRepositoryService, MapsRepositoryService
 		add this service to ServicesCollectionExtension
@@ -48,7 +48,7 @@ db:
 		MinIoRepository
 			Commands - implementation for every db command
 			Queries	- implementation  for every db query
-	add "DbService" and "MapsRepository" to ServicesCollectionExtension
+	add "MapsRepositoryService" and "MapsRepository" to ServicesCollectionExtension
 Core
 	IMapService
 		inject IDbService
