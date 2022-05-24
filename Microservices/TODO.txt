@@ -1,0 +1,68 @@
+Maps Microservices:
+	create solution folder: MapsService
+		MapsRepositoryService
+		MapsRepositoryService.Core
+		MapsRepositoryService.Infrastructure
+	MapsService
+	3 dll's, same structure as previos service
+	
+	add to docekr compoese, auto add via vs2022
+
+	add image minio to docker compose
+
+	Maps Manager:
+		create controller "MapsController"
+		implement: 
+			get list names, that on the db repository
+			get map object, Base64, by map name
+			post, upload new map
+			delete, by map name, delete from repositoty
+		
+		create Repository, by Repositories disign pattern
+			Commands - for every db operations create interfcae and implementation
+			Query - for every db operations create interfcae and implementation
+			naming convention, add subfix *Command, *Query
+
+assignments:
+create solution folder: MapsService
+3 dll's, same structure as previos service
+add to docker compoese for Maps Microservices auto add via vs2022
+add image minio to docker compose
+add and implement settings
+add and ServicesCollectionExtension
+create and test Model in MapsRepositoryService, name and Base64
+result models: get list names reuslt model, get a map resuly model, result model(for crud operations)
+services:
+	IMapsRepositoryService, MapsRepositoryService
+		add this service to ServicesCollectionExtension
+db:
+	in Core	
+		Interfaces
+			"IMapsService"
+			Repository
+				"IMapsRepository"
+				Commands - iterface for every db command
+				Queries	- iterface for every db query
+						
+	in infrastucutre - 
+		MinIoRepository
+			Commands - implementation for every db command
+			Queries	- implementation  for every db query
+	add "DbService" and "MapsRepository" to ServicesCollectionExtension
+Core
+	IMapService
+		inject IDbService
+		get list names, that on the db repository
+		get map object, Base64, by map name
+		upload new map
+		delete map, by map name, delete from repositoty
+microService(project)
+	"MapsController"
+		injecte IMapService
+		implement: 
+			get list names, that on the db repository
+			get map object, Base64, by map name
+			post, upload new map
+			delete, by map name, delete from repositoty
+
+	

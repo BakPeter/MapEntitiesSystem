@@ -1,11 +1,24 @@
 version: '3.4'
 
 services:
-  message-broker:
+  messageBroker:
     image: rabbitmq:3-management
+    container_name: messageBroker
     ports:
       - 15672:15672
       - 5672:5672
+    networks:
+      - main
+
+  minioDb:
+    image: minio/minio
+    container_name: minioDb
+    ports:
+      - 9000:9000
+      - 9001:9001
+    command: server /data --console-address ":9001"
+    volumes:
+      - D:\Projects\MapEntitiesSystem\ExampleMaps\data\minio:/data
     networks:
       - main
 
@@ -14,10 +27,24 @@ services:
     build:
       context: .
       dockerfile: MapEntitiesService/Dockerfile
+    container_name: mapEntitiesService
     ports:
       - 8080:80
     depends_on:
-      - message-broker
+      - messageBroker
+    networks:
+      - main
+
+  mapsrepositoryservice:
+    image: ${DOCKER_REGISTRY-}mapsrepositoryservice
+    build:
+      context: .
+      dockerfile: MapsRepositoryService/Dockerfile
+    container_name: mapsRepositoryService
+    ports:
+      - 8081:80
+    depends_on:
+      - minioDb
     networks:
       - main
 
