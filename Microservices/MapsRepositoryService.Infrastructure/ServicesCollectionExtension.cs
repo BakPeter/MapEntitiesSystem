@@ -13,9 +13,8 @@ public static class ServicesCollectionExtension
     public static void AddMapEntitiesServiceInfrastructureServices(this IServiceCollection services, Settings settings)
     {
         services.AddSingleton(settings);
-        services.AddScoped<IMapsService, MapsServcie>();
+        services.AddScoped<IMapsService, MapsService>();
         services.AddScoped<IMapsRepository, MapsRepository>();
-        services.AddScoped<IGetMapDataQuery, MinioGetMapDataQuery>();
- 
+        services.AddScoped<IGetMapDataQuery, MinIoGetMapDataQuery>();
     }
 }

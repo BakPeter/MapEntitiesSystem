@@ -2,7 +2,7 @@
 
 namespace MapsRepositoryService.Core.Services;
 
-public class MapsServcie : IMapsService
+public class MapsService : IMapsService
 {
 
     

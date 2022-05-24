@@ -3,7 +3,7 @@ using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 
-public class MinioGetMapDataQuery : IGetMapDataQuery
+public class MinIoGetMapDataQuery : IGetMapDataQuery
 {
     public MapResultModel GetMapData(string mapName)
     {
