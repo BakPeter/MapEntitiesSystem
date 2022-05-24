@@ -1,9 +1,3 @@
 ﻿namespace MapsRepositoryService.Core.Model;
 
-public class MapModel
-{
-    public string? Name { get; set; }
-
-    //base64
-    public byte[]? Data { get; set; }
-}
+public record MapModel(string Name = "", string Extension = "", Stream? Data = null);

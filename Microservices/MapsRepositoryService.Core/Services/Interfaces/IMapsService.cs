@@ -1,6 +1,11 @@
-﻿namespace MapsRepositoryService.Core.Services.Interfaces;
+﻿using MapsRepositoryService.Core.Model;
+
+namespace MapsRepositoryService.Core.Services.Interfaces;
 
 public interface IMapsService
 {
- 
+    MapNamesResultModel GetMapsNames();
+    MapResultModel GetMapData(string mapName);
+    ResultModel AddMap(MapModel mapModel);
+    ResultModel DeleteMap(string mapName);
 }
