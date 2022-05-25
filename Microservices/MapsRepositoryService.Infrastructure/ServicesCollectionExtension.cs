@@ -10,7 +10,7 @@ namespace MapsRepositoryService.Infrastructure;
 
 public static class ServicesCollectionExtension
 {
-    public static void AddMapEntitiesServiceInfrastructureServices(this IServiceCollection services, Settings settings)
+    public static void AddMapsRepositoryServiceInfrastructureServices(this IServiceCollection services, Settings settings)
     {
         services.AddSingleton(settings);
         services.AddScoped<IMapsService, MapsService>();

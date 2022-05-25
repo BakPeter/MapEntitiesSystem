@@ -1,4 +1,10 @@
+using MapsRepositoryService.Core.Configuration;
+using MapsRepositoryService.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+var settings = builder.Configuration.GetSection("MapsRepositorySettings").Get<Settings>();
+
+builder.Services.AddMapsRepositoryServiceInfrastructureServices(settings);
 
 // Add services to the container.
 
