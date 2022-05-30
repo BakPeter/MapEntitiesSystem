@@ -6,7 +6,7 @@ public interface IMapsRepository
 {
     Task<MapResultModel> GetMapDataAsync(string mapName);
     Task<MapNamesResultModel> GetMapsNamesAsync();
-    Task<ResultModel> AddMapAsync(string mapName, byte[] mapData);
+    Task<ResultModel> AddMapAsync(MapModel mapModel);
     Task<ResultModel> DeleteMapAsync(string mapName);
 
 }

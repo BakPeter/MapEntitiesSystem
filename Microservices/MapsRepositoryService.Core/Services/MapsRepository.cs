@@ -40,4 +40,19 @@ public class MapsRepository : IMapsRepository
     {
         return _deleteMapCommand.DeleteMapAsync(mapName);
     }
+
+    public MapNamesResultModel GetMapsNames()
+    {
+        return _getMapsNamesQuery.GetMapsNames();
+    }
+
+    public ResultModel AddMap(MapModel mapModel)
+    {
+        return _addMapCommand.AddMap(mapModel);
+    }
+
+    public ResultModel DeleteMap(string mapName)
+    {
+        return _deleteMapCommand.DeleteMap(mapName);
+    }
 }

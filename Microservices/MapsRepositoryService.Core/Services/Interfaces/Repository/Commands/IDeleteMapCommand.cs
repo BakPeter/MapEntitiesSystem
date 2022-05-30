@@ -2,8 +2,8 @@
 
 namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
 
-public interface IDeleteMapCommand
-{
+    public interface IDeleteMapCommand
+    {
     Task<ResultModel> DeleteMapAsync(string mapName);
 
 }
