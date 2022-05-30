@@ -1,15 +1,9 @@
 ﻿using MapsRepositoryService.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Commands
+namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
+
+public interface IDeleteMapCommand
 {
-    public interface IDeleteMapCommand
-    {
-        Task<ResultModel> DeleteMapAsync(string mapName);
+    Task<ResultModel> DeleteMapAsync(string mapName);
 
-    }
 }

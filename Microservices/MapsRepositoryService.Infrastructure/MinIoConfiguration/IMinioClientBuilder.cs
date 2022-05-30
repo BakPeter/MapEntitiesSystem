@@ -1,9 +1,8 @@
 ﻿using Minio;
 
-namespace MapsRepositoryService.Infrastructure.MinIoConfiguration
+namespace MapsRepositoryService.Infrastructure.MinIoConfiguration;
+
+public interface IMinioClientBuilder
 {
-    public interface IMinioClientBuilder
-    {
-        MinioClient Build();
-    }
+    MinioClient Build();
 }

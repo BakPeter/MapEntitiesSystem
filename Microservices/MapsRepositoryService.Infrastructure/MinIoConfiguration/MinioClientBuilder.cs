@@ -1,60 +1,54 @@
 ﻿using Minio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MapsRepositoryService.Infrastructure.MinIoConfiguration
+namespace MapsRepositoryService.Infrastructure.MinIoConfiguration;
+
+internal class MinioClientBuilder : IMinioClientBuilder
 {
-    internal class MinioClientBuilder : IMinioClientBuilder
+    private readonly Configuration _configuration;
+
+    public MinioClientBuilder(Configuration configuration)
     {
-        private readonly Configuration _configuration;
-
-        public MinioClientBuilder(Configuration configuration)
+        _configuration = configuration;
+    }
+    public MinioClient Build()
+    {
+        try
         {
-            _configuration = configuration;
+            MinioClient minioClient = new MinioClient()
+            .WithEndpoint(_configuration.Server)
+            .WithCredentials(_configuration.User, _configuration.Password)
+            .Build();
+
+            if (minioClient == null)
+            {
+                throw new InvalidOperationException("minioClient is null");
+            }
+
+            CreateBucketIfNotExists(minioClient, _configuration.MapsBucket).GetAwaiter().GetResult();
+
+            return minioClient;
         }
-        public MinioClient Build()
+        catch (Exception)
         {
-            try
+            throw new InvalidOperationException("minioClient creation failed");
+        }
+    }
+
+    private static async Task CreateBucketIfNotExists(MinioClient minio, string bucketName)
+    {
+        try
+        {
+            var bucketExistsArgs = new BucketExistsArgs().WithBucket(bucketName);
+            var found = await minio.BucketExistsAsync(bucketExistsArgs);
+            if (!found)
             {
-                MinioClient minioClient = new MinioClient()
-                .WithEndpoint(_configuration.Server)
-                .WithCredentials(_configuration.User, _configuration.Password)
-                .Build();
-
-                if (minioClient == null)
-                {
-                    throw new InvalidOperationException("minioClient is null");
-                }
-
-                CreateBucketIfNotExists(minioClient, _configuration.MapsBucket).GetAwaiter().GetResult();
-
-                return minioClient;
-            }
-            catch (Exception)
-            {
-                throw new InvalidOperationException("minioClient creation failed");
+                var makeBucketArgs = new MakeBucketArgs().WithBucket(bucketName);
+                await minio.MakeBucketAsync(makeBucketArgs);
             }
         }
-
-        private static async Task CreateBucketIfNotExists(MinioClient minio, string bucketName)
+        catch (Exception)
         {
-            try
-            {
-                var bucketExistsArgs = new BucketExistsArgs().WithBucket(bucketName);
-                var found = await minio.BucketExistsAsync(bucketExistsArgs);
-                if (!found)
-                {
-                    var makeBucketArgs = new MakeBucketArgs().WithBucket(bucketName);
-                    await minio.MakeBucketAsync(makeBucketArgs);
-                }
-            }
-            catch (Exception)
-            {
-                throw new InvalidOperationException("minio bucket creation failed");
-            }
+            throw new InvalidOperationException("minio bucket creation failed");
         }
     }
 }
