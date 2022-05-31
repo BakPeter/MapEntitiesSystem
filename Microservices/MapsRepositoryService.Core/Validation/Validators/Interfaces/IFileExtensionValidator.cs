@@ -4,5 +4,5 @@ namespace MapsRepositoryService.Core.Validation.Validators.Interfaces;
 
 public interface IFileExtensionValidator
 {
-    ResultModel IsFileExtensionValid(string extension);
+    ResultModel IsFileExtensionValid(MapModel mapModel);
 }
