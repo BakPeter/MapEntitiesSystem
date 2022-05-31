@@ -1,5 +1,8 @@
-﻿namespace MapsRepositoryService.Core.Validation.Validators.Interfaces;
+﻿using MapsRepositoryService.Core.Model;
 
-internal interface IFileExtensionValidator
+namespace MapsRepositoryService.Core.Validation.Validators.Interfaces;
+
+public interface IFileExtensionValidator
 {
+    ResultModel IsFileExtensionValid(string extension);
 }
