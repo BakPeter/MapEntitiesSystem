@@ -92,3 +92,6 @@ baseline.json
 
 # Husky
 .husky/_
+
+#ExampleMaps
+/ExampleMaps

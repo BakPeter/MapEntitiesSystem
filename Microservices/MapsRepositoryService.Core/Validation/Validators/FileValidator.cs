@@ -9,7 +9,7 @@ public class FileValidator : IFileValidator
     {
         if (mapModel.Data == null)
         {
-            return new ResultModel(Success: false, ErrorMessage: "No data.");
+            return new ResultModel(Success: false, ErrorMessage: "File data is null");
         }
 
         const int megaByte = 1048576;
