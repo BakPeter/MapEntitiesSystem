@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MapsRepositoryService.Core\MapsRepositoryService.Core.csproj" />
+    <ProjectReference Include="..\MapsRepositoryService.Infrastructure\MapsRepositoryService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

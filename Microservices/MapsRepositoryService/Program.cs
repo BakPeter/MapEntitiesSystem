@@ -1,6 +1,11 @@
+using MapsRepositoryService.Infrastructure;
+using MapsRepositoryService.Core.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var settings = builder.Configuration.GetSection("MessageBrokerSettings").Get<Settings>();
+builder.Services.AddMapEntitiesServiceInfrastructureServices(settings);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -28,8 +28,5 @@ public class MapsController : Controller
     }
 
     [HttpDelete]
-    public ResultModel Delete(string mapName)
-    {
-        return _mapsRepositoryService.DeleteMap(mapName);
-    }
+    public ResultModel Delete(string mapName) => _mapsRepositoryService.DeleteMap(mapName);
 }
