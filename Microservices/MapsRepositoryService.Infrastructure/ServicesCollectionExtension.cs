@@ -4,6 +4,10 @@ using MapsRepositoryService.Core.Services.Interfaces;
 using MapsRepositoryService.Core.Services.Interfaces.Repository;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
+using MapsRepositoryService.Core.Validation;
+using MapsRepositoryService.Core.Validation.Interfaces;
+using MapsRepositoryService.Core.Validation.Validators;
+using MapsRepositoryService.Core.Validation.Validators.Interfaces;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
 using MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
@@ -16,7 +20,7 @@ public static class ServicesCollectionExtension
     public static void AddMapsRepositoryServiceInfrastructureServices(this IServiceCollection services, Settings settings)
     {
         services.AddSingleton(settings);
-        
+
         services.AddScoped<IMapsService, MapsService>();
         services.AddScoped<IMapsRepository, MapsRepository>();
         services.AddScoped<IGetMapDataQuery, MinIoGetMapDataQuery>();
@@ -32,7 +36,11 @@ public static class ServicesCollectionExtension
             MapsBucket = settings.MapsBucket
         };
         services.AddSingleton(_ => minIoConfig);
-
         services.AddScoped<MinIoClientBuilder>();
+
+        services.AddSingleton<IUploadMapValidation, UploadMapValidation>();
+        services.AddSingleton<IFileExtensionValidator, FileExtensionValidator>();
+        services.AddSingleton<IMapNameValidator, MapNameValidator>();
+        services.AddSingleton<IFileValidator, FileValidator>();
     }
 }
