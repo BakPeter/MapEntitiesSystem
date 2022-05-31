@@ -35,9 +35,4 @@ public class MinioAddMapCommand : IAddMapCommand
             return new ResultModel(Success: false, ErrorMessage: $"Add {mapModel.Name} failed");
         }
     }
-
-    public Task<ResultModel> AddMapAsync(MapModel mapModel)
-    {
-        throw new NotImplementedException();
-    }
 }
