@@ -4,9 +4,8 @@ using MapsRepositoryService.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 var settings = builder.Configuration.GetSection("MapsRepositorySettings").Get<Settings>();
 
-builder.Services.AddMapsRepositoryServiceInfrastructureServices(settings);
-
 // Add services to the container.
+builder.Services.AddMapsRepositoryServiceInfrastructureServices(settings);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
