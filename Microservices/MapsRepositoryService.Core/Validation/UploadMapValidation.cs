@@ -1,10 +1,14 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Validation.Interfaces;
+using MapsRepositoryService.Core.Validation.Validators;
+using MapsRepositoryService.Core.Validation.Validators.Interfaces;
 
 namespace MapsRepositoryService.Core.Validation;
 
 public class UploadMapValidation : IUploadMapValidation
 {
+    private readonly IFileExtensionValidator _fileExtensionValidator;
+
     //File is not empty
 
     //File size is not over 1mb
@@ -16,8 +20,13 @@ public class UploadMapValidation : IUploadMapValidation
     //Valid extensions.jpeg, .png, .jpg, .svg
     //    All validations should be in core / validations
 
+    public UploadMapValidation(IFileExtensionValidator fileExtensionValidator)
+    {
+        _fileExtensionValidator = fileExtensionValidator;
+    }
     public ResultModel Validate(MapModel mapModel)
     {
-        throw new NotImplementedException();
+        ResultModel validationResult = _fileExtensionValidator.IsFileExtensionValid(mapModel.Extension);
+        return validationResult;
     }
 }
