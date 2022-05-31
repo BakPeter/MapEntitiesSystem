@@ -22,7 +22,7 @@ public class UploadMapValidation : IUploadMapValidation
 
     public ResultModel Validate(MapModel mapModel)
     {
-        var validationResult = _fileExtensionValidator.IsFileExtensionValid(mapModel.Extension);
+        var validationResult = _fileExtensionValidator.IsFileExtensionValid(mapModel);
 
         if (validationResult.Success is false)
             return _mapNameValidator.Validate(mapModel);
