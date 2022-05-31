@@ -31,28 +31,13 @@ public class MapsRepository : IMapsRepository
     {
         return _getMapsNamesQuery.GetMapsNamesAsync();
     }
-    public Task<ResultModel> AddMapAsync(string mapName, byte[] mapData)
+    public Task<ResultModel> AddMapAsync(MapModel mapModel)
     {
-        return _addMapCommand.AddMapAsync(mapName, mapData);
+        return _addMapCommand.AddMapAsync(mapModel);
     }
 
     public Task<ResultModel> DeleteMapAsync(string mapName)
     {
         return _deleteMapCommand.DeleteMapAsync(mapName);
-    }
-
-    public MapNamesResultModel GetMapsNames()
-    {
-        return _getMapsNamesQuery.GetMapsNames();
-    }
-
-    public ResultModel AddMap(MapModel mapModel)
-    {
-        return _addMapCommand.AddMap(mapModel);
-    }
-
-    public ResultModel DeleteMap(string mapName)
-    {
-        return _deleteMapCommand.DeleteMap(mapName);
     }
 }
