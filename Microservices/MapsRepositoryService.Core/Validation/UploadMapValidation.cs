@@ -8,6 +8,7 @@ namespace MapsRepositoryService.Core.Validation;
 public class UploadMapValidation : IUploadMapValidation
 {
     private readonly IFileExtensionValidator _fileExtensionValidator;
+    private readonly IMapNameValidator _mapNameValidator;
 
     //File is not empty
 
@@ -20,13 +21,20 @@ public class UploadMapValidation : IUploadMapValidation
     //Valid extensions.jpeg, .png, .jpg, .svg
     //    All validations should be in core / validations
 
-    public UploadMapValidation(IFileExtensionValidator fileExtensionValidator)
+    public UploadMapValidation(
+        IFileExtensionValidator fileExtensionValidator,
+        IMapNameValidator mapNameValidator)
     {
         _fileExtensionValidator = fileExtensionValidator;
+        _mapNameValidator = mapNameValidator;
     }
     public ResultModel Validate(MapModel mapModel)
     {
         ResultModel validationResult = _fileExtensionValidator.IsFileExtensionValid(mapModel.Extension);
+
+        if(validationResult.Success is true)
+            validationResult = _mapNameValidator.Validate(mapModel);
+
         return validationResult;
     }
 }
