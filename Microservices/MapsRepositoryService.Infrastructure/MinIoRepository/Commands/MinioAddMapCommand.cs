@@ -16,26 +16,23 @@ public class MinioAddMapCommand : IAddMapCommand
         _configuration = configuration;
     }
 
-    public async Task<ResultModel> AddMapAsync(string mapName, byte[] mapData)
+    public async Task<ResultModel> AddMapAsync(MapModel mapModel)
     {
         try
         {
-            using (var filestream = new MemoryStream(mapData))
-            {
-                var args = new PutObjectArgs()
+            var args = new PutObjectArgs()
                     .WithBucket(_configuration.MapsBucket)
-                    .WithObject(mapName)
-                    .WithStreamData(filestream)
-                    .WithObjectSize(filestream.Length);
+                    .WithObject(mapModel.Name)
+                    .WithStreamData(mapModel.Data)
+                    .WithObjectSize(mapModel.Data is null ? 0 : mapModel.Data.Length);
 
-                await _minioClient.PutObjectAsync(args);
-            }
+            await _minioClient.PutObjectAsync(args);
 
             return new ResultModel(Success: true);
         }
         catch (Exception)
         {
-            return new ResultModel(Success: false, ErrorMessage: $"Add {mapName} failed");
+            return new ResultModel(Success: false, ErrorMessage: $"Add {mapModel.Name} failed");
         }
     }
 }
