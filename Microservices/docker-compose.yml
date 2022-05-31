@@ -29,7 +29,7 @@ services:
       dockerfile: MapEntitiesService/Dockerfile
     container_name: mapEntitiesService
     ports:
-      - 8080:80
+      - 50001:80
     depends_on:
       - messageBroker
     networks:
@@ -42,7 +42,7 @@ services:
       dockerfile: MapsRepositoryService/Dockerfile
     container_name: mapsRepositoryService
     ports:
-      - 8081:80
+      - 50002:80
     depends_on:
       - minioDb
     networks:

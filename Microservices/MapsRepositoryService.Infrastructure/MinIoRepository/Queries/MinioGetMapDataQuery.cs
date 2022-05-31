@@ -1,36 +1,31 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
-using MapsRepositoryService.Infrastructure.MinIoConfiguration;
+using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 
-public class MinIoGetMapDataQuery : IGetMapDataQuery
+internal class MinIoGetMapDataQuery : IGetMapDataQuery
 {
-    private readonly MinioClient _minioClient;
-    private readonly Configuration _configuration;
+    private readonly MinioClient _minIoClient;
+    private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoGetMapDataQuery(IMinioClientBuilder minioClientBuilder, Configuration configuration)
+    public MinIoGetMapDataQuery(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
     {
-        _minioClient = minioClientBuilder.Build();
-        _configuration = configuration;
+        _minIoClient = minIoClientBuilder.Build();
+        _minIoConfiguration = minIoConfiguration;
     }
     public async Task<MapResultModel> GetMapDataAsync(string mapName)
     {
         try
         {
-            var buffer = Array.Empty<byte>();
+            var buffer = new MemoryStream();
 
             var args = new GetObjectArgs()
-                        .WithBucket(_configuration.MapsBucket)
+                        .WithBucket(_minIoConfiguration.MapsBucket)
                         .WithObject(mapName)
-                        .WithCallbackStream((stream) =>
-                        {
-                            using MemoryStream ms = new();
-                            stream.CopyTo(ms);
-                            buffer = ms.ToArray();
-                        });
-            var stat = await _minioClient.GetObjectAsync(args);
+                        .WithCallbackStream(stream => { stream.CopyTo(buffer); });
+            var stat = await _minIoClient.GetObjectAsync(args);
 
             var result = new MapResultModel
             {
@@ -42,6 +37,7 @@ public class MinIoGetMapDataQuery : IGetMapDataQuery
                 },
                 ErrorMessage = ""
             };
+
             return result;
         }
         catch (Exception)

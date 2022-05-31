@@ -1,19 +1,19 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
-using MapsRepositoryService.Infrastructure.MinIoConfiguration;
+using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
 
-public class MinioAddMapCommand : IAddMapCommand
+internal class MinIoAddMapCommand : IAddMapCommand
 {
-    private readonly MinioClient _minioClient;
-    private readonly Configuration _configuration;
+    private readonly MinioClient _minIoClient;
+    private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinioAddMapCommand(IMinioClientBuilder minioClientBuilder, Configuration configuration)
+    public MinIoAddMapCommand(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
     {
-        _minioClient = minioClientBuilder.Build();
-        _configuration = configuration;
+        _minIoClient = minIoClientBuilder.Build();
+        _minIoConfiguration = minIoConfiguration;
     }
 
     public async Task<ResultModel> AddMapAsync(MapModel mapModel)
@@ -21,12 +21,12 @@ public class MinioAddMapCommand : IAddMapCommand
         try
         {
             var args = new PutObjectArgs()
-                    .WithBucket(_configuration.MapsBucket)
+                    .WithBucket(_minIoConfiguration.MapsBucket)
                     .WithObject(mapModel.Name)
                     .WithStreamData(mapModel.Data)
-                    .WithObjectSize(mapModel.Data is null ? 0 : mapModel.Data.Length);
+                    .WithObjectSize(mapModel.Data?.Length ?? 0);
 
-            await _minioClient.PutObjectAsync(args);
+            await _minIoClient.PutObjectAsync(args);
 
             return new ResultModel(Success: true);
         }

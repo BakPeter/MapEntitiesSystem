@@ -12,9 +12,9 @@ public class MapsRepository : IMapsRepository
     private readonly IDeleteMapCommand _deleteMapCommand;
 
     public MapsRepository(IGetMapDataQuery getMapDataQuery, 
-                            IGetMapsNamesQuery getMapsNamesQuery,
-                            IAddMapCommand addMapCommand,
-                            IDeleteMapCommand deleteMapCommand)
+                          IGetMapsNamesQuery getMapsNamesQuery,
+                          IAddMapCommand addMapCommand,
+                          IDeleteMapCommand deleteMapCommand)
     {
         _getMapDataQuery = getMapDataQuery;
         _getMapsNamesQuery = getMapsNamesQuery;
@@ -22,22 +22,11 @@ public class MapsRepository : IMapsRepository
         _deleteMapCommand = deleteMapCommand;
     }
 
-    public Task<MapResultModel> GetMapDataAsync(string mapName)
-    {
-        return _getMapDataQuery.GetMapDataAsync(mapName);
-    }
+    public Task<MapResultModel> GetMapDataAsync(string mapName) => _getMapDataQuery.GetMapDataAsync(mapName);
 
-    public Task<MapNamesResultModel> GetMapsNamesAsync()
-    {
-        return _getMapsNamesQuery.GetMapsNamesAsync();
-    }
-    public Task<ResultModel> AddMapAsync(MapModel mapModel)
-    {
-        return _addMapCommand.AddMapAsync(mapModel);
-    }
+    public Task<MapNamesResultModel> GetMapsNamesAsync() => _getMapsNamesQuery.GetMapsNamesAsync();
 
-    public Task<ResultModel> DeleteMapAsync(string mapName)
-    {
-        return _deleteMapCommand.DeleteMapAsync(mapName);
-    }
+    public Task<ResultModel> AddMapAsync(MapModel mapModel) => _addMapCommand.AddMapAsync(mapModel);
+
+    public Task<ResultModel> DeleteMapAsync(string mapName) => _deleteMapCommand.DeleteMapAsync(mapName);
 }

@@ -1,29 +1,29 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
-using MapsRepositoryService.Infrastructure.MinIoConfiguration;
+using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
 
-public class MinioDeleteMapCommand : IDeleteMapCommand
+internal class MinIoDeleteMapCommand : IDeleteMapCommand
 {
-    private readonly MinioClient _minioClient;
-    private readonly Configuration _configuration;
+    private readonly MinioClient _minIoClient;
+    private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinioDeleteMapCommand(IMinioClientBuilder minioClientBuilder, Configuration configuration)
+    public MinIoDeleteMapCommand(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
     {
-        _minioClient = minioClientBuilder.Build();
-        _configuration = configuration;
+        _minIoClient = minIoClientBuilder.Build();
+        _minIoConfiguration = minIoConfiguration;
     }
     public async Task<ResultModel> DeleteMapAsync(string mapName)
     {
         try
         {
             var args = new RemoveObjectArgs()
-            .WithBucket(_configuration.MapsBucket)
+            .WithBucket(_minIoConfiguration.MapsBucket)
             .WithObject(mapName);
 
-            await _minioClient.RemoveObjectAsync(args);
+            await _minIoClient.RemoveObjectAsync(args);
 
             return new ResultModel(Success: true);
         }

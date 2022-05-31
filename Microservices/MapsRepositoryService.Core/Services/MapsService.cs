@@ -10,11 +10,11 @@ public class MapsService : IMapsService
 
     public MapsService(IMapsRepository mapsRepository) => _mapsRepository = mapsRepository;
 
-    public MapResultModel GetMapData(string mapName) => _mapsRepository.GetMapDataAsync(mapName);
+    public MapResultModel GetMapData(string mapName) => _mapsRepository.GetMapDataAsync(mapName).Result;
 
-    public ResultModel AddMap(MapModel mapModel) => _mapsRepository.AddMapAsync(mapModel);
+    public ResultModel AddMap(MapModel mapModel) => _mapsRepository.AddMapAsync(mapModel).Result;
 
-    public ResultModel DeleteMap(string mapName) => _mapsRepository.DeleteMapAsync(mapName);
+    public ResultModel DeleteMap(string mapName) => _mapsRepository.DeleteMapAsync(mapName).Result;
 
-    public MapNamesResultModel GetMapsNames() => _mapsRepository.GetMapsNamesAsync();
+    public MapNamesResultModel GetMapsNames() => _mapsRepository.GetMapsNamesAsync().Result;
 }

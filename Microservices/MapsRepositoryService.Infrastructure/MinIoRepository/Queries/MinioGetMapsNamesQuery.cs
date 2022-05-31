@@ -1,31 +1,31 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
-using MapsRepositoryService.Infrastructure.MinIoConfiguration;
+using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
-
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 
-public class MinioGetMapsNamesQuery : IGetMapsNamesQuery
+internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
 {
-    private readonly MinioClient _minioClient;
-    private readonly Configuration _configuration;
+    private readonly MinioClient _minIoClient;
+    private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinioGetMapsNamesQuery(IMinioClientBuilder minioClientBuilder, Configuration configuration)
+    public MinIoGetMapsNamesQuery(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
     {
-        _minioClient = minioClientBuilder.Build();
-        _configuration = configuration;
+        _minIoClient = minIoClientBuilder.Build();
+        _minIoConfiguration = minIoConfiguration;
     }
-    public async Task<MapNamesResultModel> GetMapsNamesAsync()
+
+    public Task<MapNamesResultModel> GetMapsNamesAsync()
     {
         try
         {
             List<string> mapsNames = new();
             var listArgs = new ListObjectsArgs()
-                        .WithBucket(_configuration.MapsBucket);
+                        .WithBucket(_minIoConfiguration.MapsBucket);
 
-            var observable = _minioClient.ListObjectsAsync(listArgs);
-            var subscription = observable.Subscribe(
+            var observable = _minIoClient.ListObjectsAsync(listArgs);
+            _ = observable.Subscribe(
                 item => mapsNames.Add(item.Key)
             );
 
@@ -36,7 +36,7 @@ public class MinioGetMapsNamesQuery : IGetMapsNamesQuery
                 ErrorMessage = ""
             };
 
-            return result;
+           return Task.FromResult(result);
         }
         catch (Exception)
         {
@@ -46,8 +46,7 @@ public class MinioGetMapsNamesQuery : IGetMapsNamesQuery
                 MapsNames = new List<string>(),
                 ErrorMessage = "Get Maps Names failed"
             };
-            return result;
+            return Task.FromResult(result);
         }
     }
 }
-

@@ -2,7 +2,10 @@
 using MapsRepositoryService.Core.Services;
 using MapsRepositoryService.Core.Services.Interfaces;
 using MapsRepositoryService.Core.Services.Interfaces.Repository;
+using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
 using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
+using MapsRepositoryService.Infrastructure.MinIoDb;
+using MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
 using MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,5 +19,15 @@ public static class ServicesCollectionExtension
         services.AddScoped<IMapsService, MapsService>();
         services.AddScoped<IMapsRepository, MapsRepository>();
         services.AddScoped<IGetMapDataQuery, MinIoGetMapDataQuery>();
+        services.AddScoped<IDeleteMapCommand, MinIoDeleteMapCommand>();
+        services.AddScoped<IAddMapCommand, MinIoAddMapCommand>();
+
+        services.AddSingleton(_ => new MinIoConfiguration
+        {
+            Server = settings.Endpoint,
+            User = settings.User,
+            Password = settings.Password,
+            MapsBucket = settings.MapsBucket
+        });
     }
 }

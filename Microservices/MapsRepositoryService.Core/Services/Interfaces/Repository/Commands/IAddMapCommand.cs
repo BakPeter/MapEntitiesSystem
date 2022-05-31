@@ -2,8 +2,7 @@
 
 namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
 
-    public interface IAddMapCommand
-    {
+public interface IAddMapCommand
+{
     Task<ResultModel> AddMapAsync(MapModel mapModel);
-
 }
