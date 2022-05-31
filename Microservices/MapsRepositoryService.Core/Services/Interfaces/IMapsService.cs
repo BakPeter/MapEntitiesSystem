@@ -6,6 +6,6 @@ public interface IMapsService
 {
     MapNamesResultModel GetMapsNames();
     MapResultModel GetMapData(string mapName);
-    ResultModel AddMap(MapModel mapModel);
+    Task<ResultModel> AddMap(MapModel mapModel);
     ResultModel DeleteMap(string mapName);
 }

@@ -15,26 +15,22 @@ internal class MinIoGetMapDataQuery : IGetMapDataQuery
         _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
-    public async Task<MapResultModel> GetMapDataAsync(string mapName)
+    public async Task<MapResultModel> GetMapByNameAsync(string mapName)
     {
         try
         {
-            var buffer = new MemoryStream();
+            var memoryStream = new MemoryStream();
 
             var args = new GetObjectArgs()
                         .WithBucket(_minIoConfiguration.MapsBucket)
                         .WithObject(mapName)
-                        .WithCallbackStream(stream => { stream.CopyTo(buffer); });
+                        .WithCallbackStream(stream => { stream.CopyTo(memoryStream); });
             var stat = await _minIoClient.GetObjectAsync(args);
 
             var result = new MapResultModel
             {
                 Success = true,
-                MapModel = new MapModel
-                {
-                    Name = stat.ObjectName,
-                    Data = buffer
-                },
+                MapBase64 = Convert.ToBase64String(memoryStream.ToArray()),
                 ErrorMessage = ""
             };
 
@@ -45,7 +41,7 @@ internal class MinIoGetMapDataQuery : IGetMapDataQuery
             var result = new MapResultModel
             {
                 Success = false,
-                MapModel = new MapModel(),
+                MapBase64 = string.Empty,
                 ErrorMessage = $"Get Map {mapName} failed"
             };
             return result;

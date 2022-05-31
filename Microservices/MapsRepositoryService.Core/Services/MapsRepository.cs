@@ -22,7 +22,7 @@ public class MapsRepository : IMapsRepository
         _deleteMapCommand = deleteMapCommand;
     }
 
-    public Task<MapResultModel> GetMapDataAsync(string mapName) => _getMapDataQuery.GetMapDataAsync(mapName);
+    public Task<MapResultModel> GetMapDataAsync(string mapName) => _getMapDataQuery.GetMapByNameAsync(mapName);
 
     public Task<MapNamesResultModel> GetMapsNamesAsync() => _getMapsNamesQuery.GetMapsNamesAsync();
 

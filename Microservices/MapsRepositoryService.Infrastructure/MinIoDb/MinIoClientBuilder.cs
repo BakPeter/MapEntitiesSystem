@@ -1,24 +1,29 @@
-﻿using Minio;
+﻿using Microsoft.Extensions.Logging;
+using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoDb;
 
 internal class MinIoClientBuilder
 {
+    private readonly ILogger<MinIoConfiguration> _logger;
     private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoClientBuilder(MinIoConfiguration minIoConfiguration)
+    public MinIoClientBuilder(ILogger<MinIoConfiguration> logger, MinIoConfiguration minIoConfiguration)
     {
+        _logger = logger;
         _minIoConfiguration = minIoConfiguration;
     }
 
+
     public MinioClient Build()
     {
-        var minIoClient = new MinioClient()
-            .WithEndpoint(_minIoConfiguration.Server)
-            .WithCredentials(_minIoConfiguration.User, _minIoConfiguration.Password)
-            .Build();
         try
         {
+            var minIoClient = new MinioClient()
+                .WithEndpoint(_minIoConfiguration.Server)
+                .WithCredentials(_minIoConfiguration.User, _minIoConfiguration.Password)
+                .Build();
+
             if (minIoClient == null)
             {
                 throw new InvalidOperationException("minIoClient is null");
@@ -34,7 +39,7 @@ internal class MinIoClientBuilder
         }
     }
 
-    private static async Task CreateBucketIfNotExists(IBucketOperations minIo, string bucketName)
+    private async Task CreateBucketIfNotExists(IBucketOperations minIo, string bucketName)
     {
         try
         {
@@ -46,8 +51,9 @@ internal class MinIoClientBuilder
                 await minIo.MakeBucketAsync(makeBucketArgs);
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            _logger.LogError(ex, ex.Message);
             throw new InvalidOperationException("minIo bucket creation failed");
         }
     }

@@ -3,6 +3,6 @@
 public class MapResultModel
 {
     public bool Success { get; set; }
-    public MapModel MapModel { get; set; } = new MapModel();
+    public string MapBase64 { get; set; } = string.Empty;
     public string ErrorMessage { get; set; } = string.Empty;
 }

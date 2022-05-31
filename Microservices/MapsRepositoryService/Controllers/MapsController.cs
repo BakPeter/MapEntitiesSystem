@@ -17,14 +17,14 @@ public class MapsController : Controller
     public MapNamesResultModel Get() => _mapsRepositoryService.GetMapsNames();
     
     [HttpGet("{mapName}")]
-    public MapResultModel Get([FromForm] string mapName) => _mapsRepositoryService.GetMapData(mapName);
+    public MapResultModel Get([FromRoute] string mapName) => _mapsRepositoryService.GetMapData(mapName);
 
     [HttpPost]
-    public ResultModel Post([FromForm] MapPostModel mapPostModel)
+    public async Task<ResultModel> Post([FromForm] MapPostModel mapPostModel)
     {
         var extension = Path.GetExtension(mapPostModel.File.FileName);
         var modelDto = new MapModel(Name: mapPostModel.MapName, Extension: extension, Data: mapPostModel.File.OpenReadStream());
-        return _mapsRepositoryService.AddMap(modelDto);
+        return await _mapsRepositoryService.AddMap(modelDto);
     }
 
     [HttpDelete]

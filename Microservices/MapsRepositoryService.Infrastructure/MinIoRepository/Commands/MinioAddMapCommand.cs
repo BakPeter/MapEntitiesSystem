@@ -22,7 +22,7 @@ internal class MinIoAddMapCommand : IAddMapCommand
         {
             var args = new PutObjectArgs()
                     .WithBucket(_minIoConfiguration.MapsBucket)
-                    .WithObject(mapModel.Name)
+                    .WithObject($"{mapModel.Name}{mapModel.Extension}")
                     .WithStreamData(mapModel.Data)
                     .WithObjectSize(mapModel.Data?.Length ?? 0);
 
