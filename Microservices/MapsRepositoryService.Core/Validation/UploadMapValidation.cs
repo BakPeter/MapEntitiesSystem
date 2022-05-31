@@ -9,31 +9,26 @@ public class UploadMapValidation : IUploadMapValidation
 {
     private readonly IFileExtensionValidator _fileExtensionValidator;
     private readonly IMapNameValidator _mapNameValidator;
-
-    //File is not empty
-
-    //File size is not over 1mb
-    //    File name(our file name) will not be empty(field required)
-
-    //Indication on each validation(1st one) -> print it
-    //File name should be unique(check in MinIo maps names) [Last]
-    //File name should be valid(letters and numbers) [REGEX]
-    //Valid extensions.jpeg, .png, .jpg, .svg
-    //    All validations should be in core / validations
+    private readonly IFileValidator _fileValidator;
 
     public UploadMapValidation(
         IFileExtensionValidator fileExtensionValidator,
-        IMapNameValidator mapNameValidator)
+        IMapNameValidator mapNameValidator,
+        IFileValidator fileValidator)
     {
         _fileExtensionValidator = fileExtensionValidator;
         _mapNameValidator = mapNameValidator;
+        _fileValidator = fileValidator;
     }
     public ResultModel Validate(MapModel mapModel)
     {
         ResultModel validationResult = _fileExtensionValidator.IsFileExtensionValid(mapModel.Extension);
 
-        if(validationResult.Success is true)
-            validationResult = _mapNameValidator.Validate(mapModel);
+        if (validationResult.Success is false)
+            return _mapNameValidator.Validate(mapModel);
+
+        if (validationResult.Success is false)
+            return _fileValidator.Validate(mapModel);
 
         return validationResult;
     }
