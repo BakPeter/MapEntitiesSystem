@@ -2,6 +2,6 @@
 
 namespace MapsRepositoryService.Core.Validation.Validators;
 
-internal class FileExtenstionValidator : IFileExtenstionValidator
+internal class FileExtensionValidator : IFileExtensionValidator
 {
 }
