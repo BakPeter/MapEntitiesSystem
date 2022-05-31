@@ -4,5 +4,6 @@ namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
 
 public interface IGetMapsNamesQuery
 {
-    MapNamesResultModel GetMapsNames();
+    Task<MapNamesResultModel> GetMapsNamesAsync();
+
 }

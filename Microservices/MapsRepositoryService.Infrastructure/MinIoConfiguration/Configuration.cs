@@ -1,8 +1,8 @@
-﻿namespace MapsRepositoryService.Core.Configuration;
+﻿namespace MapsRepositoryService.Infrastructure.MinIoConfiguration;
 
-public class Settings
+public class Configuration
 {
-    public string Endpoint { get; set; } = string.Empty;
+    public string Server { get; set; } = string.Empty;
     public string User { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string MapsBucket { get; set; } = string.Empty;
