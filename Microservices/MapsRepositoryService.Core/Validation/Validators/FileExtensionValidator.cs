@@ -5,7 +5,7 @@ namespace MapsRepositoryService.Core.Validation.Validators;
 
 public class FileExtensionValidator : IFileExtensionValidator
 {
-    public ResultModel IsFileExtensionValid(MapModel mapModel)
+    public ResultModel Validate(MapModel mapModel)
     {
         var extensions = new[] { ".jpg", ".jpeg", ".png", ".svg" };
         bool isExtensionExists = extensions.Contains(mapModel.Extension);
