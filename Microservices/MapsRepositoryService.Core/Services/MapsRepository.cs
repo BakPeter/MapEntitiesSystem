@@ -29,4 +29,8 @@ public class MapsRepository : IMapsRepository
     public Task<ResultModel> AddMapAsync(MapModel mapModel) => _addMapCommand.AddMapAsync(mapModel);
 
     public Task<ResultModel> DeleteMapAsync(string mapName) => _deleteMapCommand.DeleteMapAsync(mapName);
+    public bool IsMapNameExits(string mapName)
+    {
+        throw new NotImplementedException();
+    }
 }

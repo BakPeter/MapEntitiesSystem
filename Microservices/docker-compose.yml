@@ -18,7 +18,7 @@ services:
       - 9001:9001
     command: server /data --console-address ":9001"
     volumes:
-      - ../ExampleMaps/data/minio:/data
+      - C:\Docker\Data\MinIo:/data
     networks:
       - main
 

@@ -8,4 +8,5 @@ public interface IMapsRepository
     Task<MapNamesResultModel> GetMapsNamesAsync();
     Task<ResultModel> AddMapAsync(MapModel mapModel);
     Task<ResultModel> DeleteMapAsync(string mapName);
+    bool IsMapNameExits(string mapName);
 }

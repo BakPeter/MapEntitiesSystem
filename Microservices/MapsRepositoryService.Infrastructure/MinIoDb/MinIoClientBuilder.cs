@@ -33,7 +33,7 @@ internal class MinIoClientBuilder
 
             return minIoClient;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             throw new InvalidOperationException("minIoClient creation failed");
         }

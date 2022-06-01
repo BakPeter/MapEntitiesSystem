@@ -5,19 +5,18 @@ namespace MapsRepositoryService.Core.Validation.Validators;
 
 public class FileValidator : IFileValidator
 {
-    public ResultModel Validate(MapModel mapModel)
+    public ResultModel ValidateFile(Stream? stream) =>
+            stream == null ? new ResultModel(Success: false, ErrorMessage:
+            "File data is null") : new ResultModel(Success: true);
+
+    public ResultModel ValidateSize(Stream? stream)
     {
-        if (mapModel.Data == null)
-        {
-            return new ResultModel(Success: false, ErrorMessage: "File data is null");
-        }
+        var validateFile = ValidateFile(stream);
+        if (validateFile.Success is false) return validateFile;
 
         const int megaByte = 1048576;
-        if (mapModel.Data.Length > megaByte)
-        {
-            return new ResultModel(Success: false, ErrorMessage: "File over 1mb");
-        }
-
-        return new ResultModel(Success: true);
+        return stream is { Length: > megaByte } ?
+        new ResultModel(Success: false, ErrorMessage: "File over 1mb") :
+        new ResultModel(Success: true);
     }
 }
