@@ -1,9 +1,8 @@
 ﻿using MapsRepositoryService.Core.Model;
-using MapsRepositoryService.Core.Services.Interfaces.Repository;
-using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
-using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
+using MapsRepositoryService.Core.Repository.Commands;
+using MapsRepositoryService.Core.Repository.Queries;
 
-namespace MapsRepositoryService.Core.Services;
+namespace MapsRepositoryService.Core.Repository;
 public class MapsRepository : IMapsRepository
 {
     private readonly IGetMapDataQuery _getMapDataQuery;

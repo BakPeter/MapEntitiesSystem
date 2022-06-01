@@ -1,6 +1,6 @@
 ﻿using MapsRepositoryService.Core.Model;
+using MapsRepositoryService.Core.Repository;
 using MapsRepositoryService.Core.Services.Interfaces;
-using MapsRepositoryService.Core.Services.Interfaces.Repository;
 using MapsRepositoryService.Core.Validation.Interfaces;
 
 namespace MapsRepositoryService.Core.Services;

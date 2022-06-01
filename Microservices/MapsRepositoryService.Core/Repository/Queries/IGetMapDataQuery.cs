@@ -1,6 +1,6 @@
 ﻿using MapsRepositoryService.Core.Model;
 
-namespace MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
+namespace MapsRepositoryService.Core.Repository.Queries;
 
 public interface IGetMapDataQuery
 {

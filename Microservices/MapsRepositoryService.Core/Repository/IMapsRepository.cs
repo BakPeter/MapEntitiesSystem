@@ -1,6 +1,6 @@
 ﻿using MapsRepositoryService.Core.Model;
 
-namespace MapsRepositoryService.Core.Services.Interfaces.Repository;
+namespace MapsRepositoryService.Core.Repository;
 
 public interface IMapsRepository
 {

@@ -1,9 +1,9 @@
 ﻿using MapsRepositoryService.Core.Configuration;
+using MapsRepositoryService.Core.Repository;
+using MapsRepositoryService.Core.Repository.Commands;
+using MapsRepositoryService.Core.Repository.Queries;
 using MapsRepositoryService.Core.Services;
 using MapsRepositoryService.Core.Services.Interfaces;
-using MapsRepositoryService.Core.Services.Interfaces.Repository;
-using MapsRepositoryService.Core.Services.Interfaces.Repository.Commands;
-using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
 using MapsRepositoryService.Core.Validation;
 using MapsRepositoryService.Core.Validation.Interfaces;
 using MapsRepositoryService.Core.Validation.Validators;

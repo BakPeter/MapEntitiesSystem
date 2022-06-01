@@ -1,5 +1,5 @@
 ﻿using MapsRepositoryService.Core.Model;
-using MapsRepositoryService.Core.Services.Interfaces.Repository.Queries;
+using MapsRepositoryService.Core.Repository.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
 

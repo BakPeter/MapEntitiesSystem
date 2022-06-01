@@ -1,7 +1,7 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Validation.Validators.Interfaces;
 using System.Text.RegularExpressions;
-using MapsRepositoryService.Core.Services.Interfaces.Repository;
+using MapsRepositoryService.Core.Repository;
 
 namespace MapsRepositoryService.Core.Validation.Validators;
 
