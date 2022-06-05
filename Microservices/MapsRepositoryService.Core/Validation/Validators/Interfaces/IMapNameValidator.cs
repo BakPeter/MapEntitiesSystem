@@ -6,5 +6,5 @@ public interface IMapNameValidator
 {
     ResultModel MapNameNotEmpty(string mapName);
     ResultModel AreCharachtersChoisesForMapNameValid(string mapName);
-    ResultModel IsMapNameUnique(string mapName);
+    ResultModel IsMapNameUnique(MapNameModel mapNameModel);
 }

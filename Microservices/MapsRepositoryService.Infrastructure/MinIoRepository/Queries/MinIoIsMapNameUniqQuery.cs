@@ -2,6 +2,7 @@
 using MapsRepositoryService.Core.Repository.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using Minio;
+using Minio.Exceptions;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 
@@ -12,28 +13,31 @@ internal class MinIoIsMapNameUniqQuery : IIsMapNameUniqQuery
 
     public MinIoIsMapNameUniqQuery(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
     {
-        _minIoClient  = minIoClientBuilder.Build();
+        _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
 
-    public async Task<IsMapNameUniqResultModel> IsMapNameUniq(string mapName)
+    public async Task<IsMapNameUniqResultModel> IsMapNameUniq(MapNameModel mapNameModel)
     {
         try
         {
             var args = new StatObjectArgs()
             .WithBucket(_minIoConfiguration.MapsBucket)
-            .WithObject(mapName);
+            .WithObject(mapNameModel.mapName + mapNameModel.mapExtension);
 
             var result = await _minIoClient.StatObjectAsync(args);
 
+            return new IsMapNameUniqResultModel(Success: true, NameUniq: false);
 
+        }
+        catch (ObjectNotFoundException ex)
+        {
+            return new IsMapNameUniqResultModel(Success: true, NameUniq: true);
         }
         catch (Exception ex)
         {
 
-            throw;
+            return new IsMapNameUniqResultModel(Success: false, ErrorMessage: ex.Message);
         }
-
-        throw new NotImplementedException();
     }
 }

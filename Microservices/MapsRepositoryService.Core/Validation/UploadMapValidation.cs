@@ -22,30 +22,24 @@ public class UploadMapValidation : IUploadMapValidation
 
     public ResultModel Validate(MapModel mapModel)
     {
-        var result = ValidateMapName(mapModel.Name);
+        var validationResult = _fileExtensionValidator.Validate(mapModel);
+        if (validationResult.Success is false) return validationResult;
 
-        if(result.Success is false) return result;
+        validationResult = ValidateMapName(new MapNameModel(mapModel.Name, mapModel.Extension));
+        if(validationResult.Success is false) return validationResult;
 
         return ValidateFile(mapModel.Data);
-        //if (validationResult.Success is false)
-        //    return _mapNameValidator.MapNameNotEmpty(mapModel);
-
-        //if (validationResult.Success is false)
-        //    return _fileValidator.ValidateFile(mapModel);
-
-        //var validationResult = _fileExtensionValidator.ValidateFile(mapModel);
-        //return new ResultModel(Success: true);
     }
 
-    private ResultModel ValidateMapName(string mapName)
+    private ResultModel ValidateMapName(MapNameModel mapNameModel)
     {
-        var result = _mapNameValidator.MapNameNotEmpty(mapName);
+        var result = _mapNameValidator.MapNameNotEmpty(mapNameModel.mapName);
         if (result.Success is false) return result;
 
-        result = _mapNameValidator.AreCharachtersChoisesForMapNameValid(mapName);
+        result = _mapNameValidator.AreCharachtersChoisesForMapNameValid(mapNameModel.mapName);
         if (result.Success is false) return result;
 
-        result = _mapNameValidator.IsMapNameUnique(mapName);
+        result = _mapNameValidator.IsMapNameUnique(mapNameModel);
         if (result.Success is false) return result;
 
         return new ResultModel(Success: true);

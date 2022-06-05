@@ -4,5 +4,5 @@ namespace MapsRepositoryService.Core.Repository.Queries;
 
 public interface IIsMapNameUniqQuery
 {
-    Task<IsMapNameUniqResultModel> IsMapNameUniq(string mapName);
+    Task<IsMapNameUniqResultModel> IsMapNameUniq(MapNameModel mapNameModel);
 }

@@ -31,12 +31,15 @@ namespace MapsRepositoryService.Core.Validation.Validators
                 new ResultModel(Success: true);
         }
 
-        public ResultModel IsMapNameUnique(string mapName)
+        public ResultModel IsMapNameUnique(MapNameModel mapNameModel)
         {
-            var isExits = _mapsRepository.IsMapNameExits(mapName);
-            return isExits == false ?
-                new ResultModel(Success: true) :
-                new ResultModel(Success: false, ErrorMessage: "Todo Peter");
+            var isExitsResult = _mapsRepository.IsMapNameExits(mapNameModel).Result;
+
+            return isExitsResult.Success
+                ? isExitsResult.NameUniq
+                    ? new ResultModel(Success: true)
+                    : new ResultModel(Success: false, ErrorMessage: "Map name already exists")
+                : new ResultModel(Success: false, ErrorMessage: isExitsResult.ErrorMessage);
         }
     }
 }

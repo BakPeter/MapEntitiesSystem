@@ -22,12 +22,13 @@ public static class ServicesCollectionExtension
         services.AddSingleton(settings);
 
         services.AddScoped<IMapsService, MapsService>();
+       
         services.AddScoped<IMapsRepository, MapsRepository>();
         services.AddScoped<IGetMapDataQuery, MinIoGetMapDataQuery>();
         services.AddScoped<IGetMapsNamesQuery, MinIoGetMapsNamesQuery>();
         services.AddScoped<IDeleteMapCommand, MinIoDeleteMapCommand>();
         services.AddScoped<IAddMapCommand, MinIoAddMapCommand>();
-
+        
         var minIoConfig = new MinIoConfiguration
         {
             Server = settings.Endpoint,
@@ -35,12 +36,13 @@ public static class ServicesCollectionExtension
             Password = settings.Password,
             MapsBucket = settings.MapsBucket
         };
-        services.AddSingleton(_ => minIoConfig);
+        services.AddScoped(_ => minIoConfig);
         services.AddScoped<MinIoClientBuilder>();
 
-        services.AddSingleton<IUploadMapValidation, UploadMapValidation>();
-        services.AddSingleton<IFileExtensionValidator, FileExtensionValidator>();
-        services.AddSingleton<IMapNameValidator, MapNameValidator>();
-        services.AddSingleton<IFileValidator, FileValidator>();
+        services.AddScoped<IUploadMapValidation, UploadMapValidation>();
+        services.AddScoped<IFileExtensionValidator, FileExtensionValidator>();
+        services.AddScoped<IMapNameValidator, MapNameValidator>();
+        services.AddScoped<IFileValidator, FileValidator>();
+        services.AddScoped<IIsMapNameUniqQuery, MinIoIsMapNameUniqQuery>();
     }
 }

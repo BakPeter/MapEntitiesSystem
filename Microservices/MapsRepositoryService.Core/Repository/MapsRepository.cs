@@ -9,16 +9,19 @@ public class MapsRepository : IMapsRepository
     private readonly IGetMapsNamesQuery _getMapsNamesQuery;
     private readonly IAddMapCommand _addMapCommand;
     private readonly IDeleteMapCommand _deleteMapCommand;
+    private readonly IIsMapNameUniqQuery _isMapNameUniqQuery;
 
-    public MapsRepository(IGetMapDataQuery getMapDataQuery, 
+    public MapsRepository(IGetMapDataQuery getMapDataQuery,
                           IGetMapsNamesQuery getMapsNamesQuery,
                           IAddMapCommand addMapCommand,
-                          IDeleteMapCommand deleteMapCommand)
+                          IDeleteMapCommand deleteMapCommand,
+                          IIsMapNameUniqQuery isMapNameUniqQuery)
     {
         _getMapDataQuery = getMapDataQuery;
         _getMapsNamesQuery = getMapsNamesQuery;
         _addMapCommand = addMapCommand;
         _deleteMapCommand = deleteMapCommand;
+        _isMapNameUniqQuery = isMapNameUniqQuery;
     }
 
     public Task<MapResultModel> GetMapDataAsync(string mapName) => _getMapDataQuery.GetMapByNameAsync(mapName);
@@ -28,9 +31,7 @@ public class MapsRepository : IMapsRepository
     public Task<ResultModel> AddMapAsync(MapModel mapModel) => _addMapCommand.AddMapAsync(mapModel);
 
     public Task<ResultModel> DeleteMapAsync(string mapName) => _deleteMapCommand.DeleteMapAsync(mapName);
-    public bool IsMapNameExits(string mapName)
-    {
-        var names = _getMapsNamesQuery.GetMapsNamesAsync();
-        throw new NotImplementedException();
-    }
+
+    public Task<IsMapNameUniqResultModel> IsMapNameExits(MapNameModel mapNameModel)
+      =>  _isMapNameUniqQuery.IsMapNameUniq(mapNameModel);
 }
