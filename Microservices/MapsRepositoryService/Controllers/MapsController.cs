@@ -8,10 +8,17 @@ namespace MapsRepositoryService.Controllers;
 [Route("[controller]")]
 public class MapsController : Controller
 {
+    private readonly ILogger<MapsController> _logger;
     private readonly IMapsService _mapsRepositoryService;
     public record MapPostModel(string MapName, IFormFile File);
 
-    public MapsController(IMapsService mapsRepositoryService) => _mapsRepositoryService = mapsRepositoryService;
+    public MapsController(
+        ILogger<MapsController> logger,
+        IMapsService mapsRepositoryService)
+    {
+        _logger = logger;
+        _mapsRepositoryService = mapsRepositoryService;
+    }
 
     [HttpGet]
     public MapNamesResultModel Get() => _mapsRepositoryService.GetMapsNames();
@@ -22,9 +29,18 @@ public class MapsController : Controller
     [HttpPost]
     public async Task<ResultModel> Post([FromForm] MapPostModel mapPostModel)
     {
-        var extension = Path.GetExtension(mapPostModel.File.FileName);
-        var modelDto = new MapModel(Name: mapPostModel.MapName, Extension: extension, Data: mapPostModel.File.OpenReadStream());
-        return await _mapsRepositoryService.AddMap(modelDto);
+        try
+        {
+            var extension = Path.GetExtension(mapPostModel.File.FileName);
+            var modelDto = new MapModel(Name: mapPostModel.MapName, Extension: extension, Data: mapPostModel.File.OpenReadStream());
+            return await _mapsRepositoryService.AddMap(modelDto);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            throw;
+        }
+        
     }
 
     [HttpDelete]

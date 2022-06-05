@@ -35,6 +35,8 @@ internal class MinIoClientBuilder
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, message: ex.Message);
+
             throw new InvalidOperationException("minIoClient creation failed");
         }
     }

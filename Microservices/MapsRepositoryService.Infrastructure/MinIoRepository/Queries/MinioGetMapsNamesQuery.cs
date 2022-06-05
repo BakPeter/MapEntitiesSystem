@@ -1,6 +1,7 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Repository.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
+using Microsoft.Extensions.Logging;
 using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
@@ -8,10 +9,15 @@ namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
 {
     private readonly MinioClient _minIoClient;
+    private readonly ILogger<MinIoGetMapsNamesQuery> _logger;
     private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoGetMapsNamesQuery(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
+    public MinIoGetMapsNamesQuery(
+         ILogger<MinIoGetMapsNamesQuery> logger,
+         MinIoClientBuilder minIoClientBuilder, 
+         MinIoConfiguration minIoConfiguration)
     {
+        _logger = logger;
         _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
@@ -38,8 +44,10 @@ internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
 
            return Task.FromResult(result);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            _logger.LogError(ex, ex.Message);
+
             var result = new MapNamesResultModel
             {
                 Success = false,

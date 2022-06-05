@@ -1,6 +1,7 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Repository.Commands;
 using MapsRepositoryService.Infrastructure.MinIoDb;
+using Microsoft.Extensions.Logging;
 using Minio;
 
 namespace MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
@@ -8,10 +9,15 @@ namespace MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
 internal class MinIoDeleteMapCommand : IDeleteMapCommand
 {
     private readonly MinioClient _minIoClient;
+    private readonly ILogger<MinIoDeleteMapCommand> _logger;
     private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoDeleteMapCommand(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
+    public MinIoDeleteMapCommand(
+        ILogger<MinIoDeleteMapCommand> logger, 
+        MinIoClientBuilder minIoClientBuilder,
+        MinIoConfiguration minIoConfiguration)
     {
+        _logger = logger;
         _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
@@ -27,8 +33,10 @@ internal class MinIoDeleteMapCommand : IDeleteMapCommand
 
             return new ResultModel(Success: true);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            _logger.LogError(ex, ex.Message);
+
             return new ResultModel(Success: false, ErrorMessage: $"Delete {mapName} failed");
         }
     }

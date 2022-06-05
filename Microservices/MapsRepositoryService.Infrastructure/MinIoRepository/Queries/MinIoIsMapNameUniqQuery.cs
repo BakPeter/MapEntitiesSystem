@@ -1,6 +1,7 @@
 ﻿using MapsRepositoryService.Core.Model;
 using MapsRepositoryService.Core.Repository.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
+using Microsoft.Extensions.Logging;
 using Minio;
 using Minio.Exceptions;
 
@@ -8,11 +9,17 @@ namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
 
 internal class MinIoIsMapNameUniqQuery : IIsMapNameUniqQuery
 {
+    private readonly ILogger<MinIoIsMapNameUniqQuery> _logger;
+
     private readonly MinioClient _minIoClient;
     private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoIsMapNameUniqQuery(MinIoClientBuilder minIoClientBuilder, MinIoConfiguration minIoConfiguration)
+    public MinIoIsMapNameUniqQuery(
+        ILogger<MinIoIsMapNameUniqQuery> logger,
+        MinIoClientBuilder minIoClientBuilder,
+        MinIoConfiguration minIoConfiguration)
     {
+        _logger = logger;
         _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
@@ -32,11 +39,12 @@ internal class MinIoIsMapNameUniqQuery : IIsMapNameUniqQuery
         }
         catch (ObjectNotFoundException ex)
         {
+            _logger.LogError(ex, ex.Message);
             return new IsMapNameUniqResultModel(Success: true, NameUniq: true);
         }
         catch (Exception ex)
         {
-
+            _logger.LogError(ex, ex.Message);
             return new IsMapNameUniqResultModel(Success: false, ErrorMessage: ex.Message);
         }
     }
