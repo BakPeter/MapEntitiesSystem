@@ -42,7 +42,7 @@ public class UploadMapValidation : IUploadMapValidation
         var result = _mapNameValidator.MapNameNotEmpty(mapName);
         if (result.Success is false) return result;
 
-        result = _mapNameValidator.IsMapNameValid(mapName);
+        result = _mapNameValidator.AreCharachtersChoisesForMapNameValid(mapName);
         if (result.Success is false) return result;
 
         result = _mapNameValidator.IsMapNameUnique(mapName);

@@ -30,6 +30,7 @@ public class MapsRepository : IMapsRepository
     public Task<ResultModel> DeleteMapAsync(string mapName) => _deleteMapCommand.DeleteMapAsync(mapName);
     public bool IsMapNameExits(string mapName)
     {
+        var names = _getMapsNamesQuery.GetMapsNamesAsync();
         throw new NotImplementedException();
     }
 }

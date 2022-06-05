@@ -1,9 +1,8 @@
 ﻿using MapsRepositoryService.Core.Model;
 
-namespace MapsRepositoryService.Core.Validation.Interfaces
+namespace MapsRepositoryService.Core.Validation.Interfaces;
+
+public interface IUploadMapValidation
 {
-    public interface IUploadMapValidation
-    {
-        ResultModel Validate(MapModel mapModel);
-    }
+    ResultModel Validate(MapModel mapModel);
 }
