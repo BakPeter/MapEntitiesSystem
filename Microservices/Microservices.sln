@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapsRepositoryService.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapsRepositoryService.Infrastructure", "MapsRepositoryService.Infrastructure\MapsRepositoryService.Infrastructure.csproj", "{3DD78A21-846B-420E-B1B6-619FCC06C46E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Core", "RabbitMqDotNetDocker\MessageBroker.Core\MessageBroker.Core.csproj", "{BB36565A-48E0-454F-880D-8056D14913C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Core", "Common\MessageBroker.Core\MessageBroker.Core.csproj", "{AD951637-649F-48BF-A519-CFA8D9B4FD06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Infrastructure", "RabbitMqDotNetDocker\MessageBroker.Infrastructure\MessageBroker.Infrastructure.csproj", "{1706418B-C5EF-4A65-98B8-7022C30EE161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Infrastructure", "Common\MessageBroker.Infrastructure\MessageBroker.Infrastructure.csproj", "{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{93C35076-DDE7-4556-8939-0914ADC1D317}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,14 +61,14 @@ Global
 		{3DD78A21-846B-420E-B1B6-619FCC06C46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DD78A21-846B-420E-B1B6-619FCC06C46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DD78A21-846B-420E-B1B6-619FCC06C46E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB36565A-48E0-454F-880D-8056D14913C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB36565A-48E0-454F-880D-8056D14913C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB36565A-48E0-454F-880D-8056D14913C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB36565A-48E0-454F-880D-8056D14913C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1706418B-C5EF-4A65-98B8-7022C30EE161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1706418B-C5EF-4A65-98B8-7022C30EE161}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1706418B-C5EF-4A65-98B8-7022C30EE161}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1706418B-C5EF-4A65-98B8-7022C30EE161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD951637-649F-48BF-A519-CFA8D9B4FD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD951637-649F-48BF-A519-CFA8D9B4FD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD951637-649F-48BF-A519-CFA8D9B4FD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD951637-649F-48BF-A519-CFA8D9B4FD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,8 +80,8 @@ Global
 		{C48BCFB7-8BBE-46DC-853C-F63BFFA8909A} = {868FCA84-E72B-478E-B27F-E1263B3D9FE2}
 		{F1D29D11-A5F6-4198-824D-C4B2E3B7EA27} = {868FCA84-E72B-478E-B27F-E1263B3D9FE2}
 		{3DD78A21-846B-420E-B1B6-619FCC06C46E} = {868FCA84-E72B-478E-B27F-E1263B3D9FE2}
-		{BB36565A-48E0-454F-880D-8056D14913C7} = {93C35076-DDE7-4556-8939-0914ADC1D317}
-		{1706418B-C5EF-4A65-98B8-7022C30EE161} = {93C35076-DDE7-4556-8939-0914ADC1D317}
+		{AD951637-649F-48BF-A519-CFA8D9B4FD06} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
+		{8D8C1C42-AB37-4BD8-90D0-A6461AFECF35} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6488D464-1DC7-4BF1-8E93-E5E3BDC381B3}
