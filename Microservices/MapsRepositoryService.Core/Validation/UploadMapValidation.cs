@@ -26,9 +26,7 @@ public class UploadMapValidation : IUploadMapValidation
         if (validationResult.Success is false) return validationResult;
 
         validationResult = ValidateMapName(new MapNameModel(mapModel.Name, mapModel.Extension));
-        if(validationResult.Success is false) return validationResult;
-
-        return ValidateFile(mapModel.Data);
+        return validationResult.Success is false ? validationResult : ValidateFile(mapModel.Data);
     }
 
     private ResultModel ValidateMapName(MapNameModel mapNameModel)
@@ -36,18 +34,16 @@ public class UploadMapValidation : IUploadMapValidation
         var result = _mapNameValidator.MapNameNotEmpty(mapNameModel.mapName);
         if (result.Success is false) return result;
 
-        result = _mapNameValidator.AreCharachtersChoisesForMapNameValid(mapNameModel.mapName);
+        result = _mapNameValidator.MapNameIsValid(mapNameModel.mapName);
         if (result.Success is false) return result;
 
         result = _mapNameValidator.IsMapNameUnique(mapNameModel);
-        if (result.Success is false) return result;
-
-        return new ResultModel(Success: true);
+        return result.Success is false ? result : new ResultModel(Success: true);
     }
 
     private ResultModel ValidateFile(Stream? stream)
     {
         var result = _fileValidator.ValidateFile(stream);
-        return result.Success is false ? result : _fileValidator.ValidateSize(stream);
+        return result.Success is false ? result : _fileValidator.ValidateFileSize(stream);
     }
 }

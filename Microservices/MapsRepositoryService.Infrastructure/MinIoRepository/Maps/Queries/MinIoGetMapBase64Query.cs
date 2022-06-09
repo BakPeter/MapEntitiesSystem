@@ -1,19 +1,19 @@
 ﻿using MapsRepositoryService.Core.Model;
-using MapsRepositoryService.Core.Repository.Queries;
+using MapsRepositoryService.Core.Repository.Maps.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using Microsoft.Extensions.Logging;
 using Minio;
 
-namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
+namespace MapsRepositoryService.Infrastructure.MinIoRepository.Maps.Queries;
 
-internal class MinIoGetMapDataQuery : IGetMapDataQuery
+internal class MinIoGetMapBase64Query : IGetMapBase64Query
 {
     private readonly MinioClient _minIoClient;
-    private readonly ILogger<MinIoGetMapDataQuery> _logger;
+    private readonly ILogger<MinIoGetMapBase64Query> _logger;
     private readonly MinIoConfiguration _minIoConfiguration;
 
-    public MinIoGetMapDataQuery(
-        ILogger<MinIoGetMapDataQuery> logger,
+    public MinIoGetMapBase64Query(
+        ILogger<MinIoGetMapBase64Query> logger,
         MinIoClientBuilder minIoClientBuilder,
         MinIoConfiguration minIoConfiguration)
     {
@@ -21,7 +21,8 @@ internal class MinIoGetMapDataQuery : IGetMapDataQuery
         _minIoClient = minIoClientBuilder.Build();
         _minIoConfiguration = minIoConfiguration;
     }
-    public async Task<MapResultModel> GetMapByNameAsync(string mapName)
+
+    public async Task<MapResultModel> GetMapBase64Async(string mapName)
     {
         try
         {
@@ -31,7 +32,7 @@ internal class MinIoGetMapDataQuery : IGetMapDataQuery
                         .WithBucket(_minIoConfiguration.MapsBucket)
                         .WithObject(mapName)
                         .WithCallbackStream(stream => { stream.CopyTo(memoryStream); });
-            var stat = await _minIoClient.GetObjectAsync(args);
+            await _minIoClient.GetObjectAsync(args);
 
             var result = new MapResultModel
             {

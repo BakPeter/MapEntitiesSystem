@@ -13,8 +13,7 @@ internal class MinIoClientBuilder
         _logger = logger;
         _minIoConfiguration = minIoConfiguration;
     }
-
-
+    
     public MinioClient Build()
     {
         try
@@ -30,6 +29,7 @@ internal class MinIoClientBuilder
             }
 
             CreateBucketIfNotExists(minIoClient, _minIoConfiguration.MapsBucket).GetAwaiter().GetResult();
+            CreateBucketIfNotExists(minIoClient, _minIoConfiguration.MissionMapBucket).GetAwaiter().GetResult();
 
             return minIoClient;
         }
@@ -47,7 +47,7 @@ internal class MinIoClientBuilder
         {
             var bucketExistsArgs = new BucketExistsArgs().WithBucket(bucketName);
             var found = await minIo.BucketExistsAsync(bucketExistsArgs);
-            if (!found)
+            if (found is false)
             {
                 var makeBucketArgs = new MakeBucketArgs().WithBucket(bucketName);
                 await minIo.MakeBucketAsync(makeBucketArgs);

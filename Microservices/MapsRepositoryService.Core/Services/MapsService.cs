@@ -16,16 +16,18 @@ public class MapsService : IMapsService
         _uploadMapValidation = uploadMapValidation;
     }
 
-    public MapResultModel GetMapData(string mapName) => _mapsRepository.GetMapDataAsync(mapName).Result;
+    public async Task<MapResultModel> GetMapBase64Async(string mapName) => await _mapsRepository.GetMapDataAsync(mapName);
 
-    public async Task<ResultModel> AddMap(MapModel mapModel)
+    public async Task<ResultModel> AddMapAsync(MapModel mapModel)
     {
         var validationResult = _uploadMapValidation.Validate(mapModel);
         if (validationResult.Success is false) return validationResult;
         return await _mapsRepository.AddMapAsync(mapModel);
     }
 
-    public ResultModel DeleteMap(string mapName) => _mapsRepository.DeleteMapAsync(mapName).Result;
+    public async Task<ResultModel> DeleteMapAsync(string mapName) => await _mapsRepository.DeleteMapAsync(mapName);
+    
+    public async Task<MapStreamResultModel> GetMapStreamAsync(string mapName) => await _mapsRepository.GetMapStream(mapName);
 
-    public MapNamesResultModel GetMapsNames() => _mapsRepository.GetMapsNamesAsync().Result;
+    public async Task<MapNamesResultModel> GetMapsNamesAsync() => await _mapsRepository.GetMapsNamesAsync();
 }

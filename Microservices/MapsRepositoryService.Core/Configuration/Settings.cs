@@ -6,5 +6,5 @@ public class Settings
     public string User { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string MapsBucket { get; set; } = string.Empty;
-
+    public string MissionMapBucket { get; set; } = string.Empty;
 }

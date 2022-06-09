@@ -1,10 +1,10 @@
 ﻿using MapsRepositoryService.Core.Model;
-using MapsRepositoryService.Core.Repository.Queries;
+using MapsRepositoryService.Core.Repository.Maps.Queries;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using Microsoft.Extensions.Logging;
 using Minio;
 
-namespace MapsRepositoryService.Infrastructure.MinIoRepository.Queries;
+namespace MapsRepositoryService.Infrastructure.MinIoRepository.Maps.Queries;
 
 internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
 {
@@ -30,7 +30,7 @@ internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
             var listArgs = new ListObjectsArgs()
                         .WithBucket(_minIoConfiguration.MapsBucket);
 
-            var observable =  _minIoClient.ListObjectsAsync(listArgs);
+            var observable = _minIoClient.ListObjectsAsync(listArgs);
             _ = observable.Subscribe(
                 item => mapsNames.Add(item.Key)
             );

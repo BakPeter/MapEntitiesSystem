@@ -9,22 +9,22 @@ namespace MapsRepositoryService.Controllers;
 public class MapsController : Controller
 {
     private readonly ILogger<MapsController> _logger;
-    private readonly IMapsService _mapsRepositoryService;
+    private readonly IMapsService _mapsService;
     public record MapPostModel(string MapName, IFormFile File);
 
     public MapsController(
         ILogger<MapsController> logger,
-        IMapsService mapsRepositoryService)
+        IMapsService mapsService)
     {
         _logger = logger;
-        _mapsRepositoryService = mapsRepositoryService;
+        _mapsService = mapsService;
     }
 
     [HttpGet]
-    public MapNamesResultModel Get() => _mapsRepositoryService.GetMapsNames();
-    
+    public async Task<MapNamesResultModel> Get() => await _mapsService.GetMapsNamesAsync();
+
     [HttpGet("{mapName}")]
-    public MapResultModel Get([FromRoute] string mapName) => _mapsRepositoryService.GetMapData(mapName);
+    public async Task<MapResultModel> Get([FromRoute] string mapName) => await _mapsService.GetMapBase64Async(mapName);
 
     [HttpPost]
     public async Task<ResultModel> Post([FromForm] MapPostModel mapPostModel)
@@ -33,16 +33,15 @@ public class MapsController : Controller
         {
             var extension = Path.GetExtension(mapPostModel.File.FileName);
             var modelDto = new MapModel(Name: mapPostModel.MapName, Extension: extension, Data: mapPostModel.File.OpenReadStream());
-            return await _mapsRepositoryService.AddMap(modelDto);
+            return await _mapsService.AddMapAsync(modelDto);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex.Message);
-            throw;
+            return new ResultModel(false, ErrorMessage: "Failed to add map");
         }
-        
     }
 
     [HttpDelete]
-    public ResultModel Delete(string mapName) => _mapsRepositoryService.DeleteMap(mapName);
+    public async Task<ResultModel> Delete(string mapName) => await _mapsService.DeleteMapAsync(mapName);
 }

@@ -1,6 +1,6 @@
 ﻿using MapsRepositoryService.Core.Model;
 
-namespace MapsRepositoryService.Core.Repository.Commands;
+namespace MapsRepositoryService.Core.Repository.Maps.Commands;
 
 public interface IDeleteMapCommand
 {

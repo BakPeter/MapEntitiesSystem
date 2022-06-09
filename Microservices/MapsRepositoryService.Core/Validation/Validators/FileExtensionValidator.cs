@@ -8,14 +8,9 @@ public class FileExtensionValidator : IFileExtensionValidator
     public ResultModel Validate(MapModel mapModel)
     {
         var extensions = new[] { ".jpg", ".jpeg", ".png", ".svg" };
-        bool isExtensionExists = extensions.Contains(mapModel.Extension);
-        if (isExtensionExists)
-        {
-            return new ResultModel(Success: true);
-        }
-        else
-        {
-            return new ResultModel(Success: false, ErrorMessage: "File extension not allowed");
-        }
+        var isExtensionExists = extensions.Contains(mapModel.Extension.ToLower());
+        
+        return isExtensionExists ? new ResultModel(Success: true) : 
+                                   new ResultModel(Success: false, ErrorMessage: "File extension not allowed");
     }
 }

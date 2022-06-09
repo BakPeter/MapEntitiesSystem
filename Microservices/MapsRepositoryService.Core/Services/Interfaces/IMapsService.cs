@@ -4,8 +4,9 @@ namespace MapsRepositoryService.Core.Services.Interfaces;
 
 public interface IMapsService
 {
-    MapNamesResultModel GetMapsNames();
-    MapResultModel GetMapData(string mapName);
-    Task<ResultModel> AddMap(MapModel mapModel);
-    ResultModel DeleteMap(string mapName);
+    Task<MapNamesResultModel> GetMapsNamesAsync();
+    Task<MapResultModel> GetMapBase64Async(string mapName);
+    Task<ResultModel> AddMapAsync(MapModel mapModel);
+    Task<ResultModel> DeleteMapAsync(string mapName);
+    Task<MapStreamResultModel> GetMapStreamAsync(string mapName);
 }

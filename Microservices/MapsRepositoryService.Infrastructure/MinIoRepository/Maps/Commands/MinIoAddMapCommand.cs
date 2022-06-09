@@ -1,10 +1,10 @@
 ﻿using MapsRepositoryService.Core.Model;
-using MapsRepositoryService.Core.Repository.Commands;
+using MapsRepositoryService.Core.Repository.Maps.Commands;
 using MapsRepositoryService.Infrastructure.MinIoDb;
 using Microsoft.Extensions.Logging;
 using Minio;
 
-namespace MapsRepositoryService.Infrastructure.MinIoRepository.Commands;
+namespace MapsRepositoryService.Infrastructure.MinIoRepository.Maps.Commands;
 
 internal class MinIoAddMapCommand : IAddMapCommand
 {

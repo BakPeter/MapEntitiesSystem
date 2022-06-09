@@ -6,4 +6,5 @@ internal class MinIoConfiguration
     public string User { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string MapsBucket { get; set; } = string.Empty;
+    public string MissionMapBucket { get; set; } = string.Empty;
 }
