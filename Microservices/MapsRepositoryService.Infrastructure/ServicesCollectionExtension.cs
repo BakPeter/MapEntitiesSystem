@@ -21,9 +21,11 @@ namespace MapsRepositoryService.Infrastructure;
 
 public static class ServicesCollectionExtension
 {
-    public static void AddMapsRepositoryServiceInfrastructureServices(this IServiceCollection services, Settings settings)
+    public static void AddMapsRepositoryServiceInfrastructureServices(this IServiceCollection services,
+        Settings settings, MessageBrokerSettings messageBrokerSettings)
     {
         services.AddSingleton(settings);
+        services.AddSingleton(messageBrokerSettings);
 
         services.AddScoped<IMapsService, MapsService>();
         services.AddScoped<IMissionMapService, MissionMapService>();
@@ -33,7 +35,7 @@ public static class ServicesCollectionExtension
         services.AddScoped<IGetMapsNamesQuery, MinIoGetMapsNamesQuery>();
         services.AddScoped<IDeleteMapCommand, MinIoDeleteMapCommand>();
         services.AddScoped<IAddMapCommand, MinIoAddMapCommand>();
-        
+
         var minIoConfig = new MinIoConfiguration
         {
             Server = settings.Endpoint,

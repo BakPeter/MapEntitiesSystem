@@ -19,6 +19,7 @@
     <ProjectReference Include="..\MapEntitiesService.Infrastructure\MapEntitiesService.Infrastructure.csproj" />
     <ProjectReference Include="..\MapsRepositoryService.Core\MapsRepositoryService.Core.csproj" />
     <ProjectReference Include="..\MapsRepositoryService.Infrastructure\MapsRepositoryService.Infrastructure.csproj" />
+    <ProjectReference Include="..\MessageBroker.Infrastructure\MessageBroker.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
