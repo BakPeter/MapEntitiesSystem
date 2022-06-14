@@ -17,4 +17,13 @@ public static class ServiceCollectionExtension
         services.AddScoped<ISubscriber, Subscriber>();
         services.AddScoped<ISubscriberAdapter, SubscriberRabbitMqAdapter>();
     }
+
+    public static void AddMessageBrokerPubSubServicesSingelton(this IServiceCollection services, RabbitMqConfiguration configuration)
+    {
+        services.AddSingleton(_ => new RabbitMqChannelBuilder(configuration));
+        services.AddSingleton<IPublisher, Publisher>();
+        services.AddSingleton<IPublisherAdapter, PublisherRabbitMqAdapter>();
+        services.AddSingleton<ISubscriber, Subscriber>();
+        services.AddSingleton<ISubscriberAdapter, SubscriberRabbitMqAdapter>();
+    }
 }

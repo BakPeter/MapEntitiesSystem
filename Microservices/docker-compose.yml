@@ -48,6 +48,20 @@ services:
     networks:
       - main
 
+  notificationsservice:
+    image: ${DOCKER_REGISTRY-}notificationsservice
+    build:
+      context: .
+      dockerfile: NotificationsService/Dockerfile
+    container_name: notificationsService
+    ports:
+      - 50003:80
+    depends_on:
+      - messageBroker
+    networks:
+      - main
+
 networks:
   main:
     name: entities-network
+

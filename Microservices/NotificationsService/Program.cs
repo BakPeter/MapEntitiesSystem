@@ -15,7 +15,7 @@ builder.Services.AddHostedService<WorkerService>();
 
 var messageBrokerSettings = builder.Configuration.GetSection("MessageBrokerSettings").Get<MessageBrokerSettings>();
 var missionMapHubSettings = builder.Configuration.GetSection("MissionMapHubSettings").Get<MissionMapHubSettings>();
-builder.Services.AddScoped(_ => new Settings
+builder.Services.AddSingleton(_ => new Settings
 {
     MissionMapTopic = messageBrokerSettings.MissionMapTopic,
     EntitiesTopic = messageBrokerSettings.MissionMapTopic,
@@ -24,9 +24,9 @@ builder.Services.AddScoped(_ => new Settings
     MapEntitiesMethodName = missionMapHubSettings.MapEntitiesNameMethod
 });
 
-builder.Services.AddMessageBrokerPubSubServices(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
-builder.Services.AddScoped<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
-builder.Services.AddScoped<IMapEntitySendCallbackCommand, MapEntitySendCallbackCommand>();
+builder.Services.AddMessageBrokerPubSubServicesSingelton(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
+builder.Services.AddSingleton<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
+builder.Services.AddSingleton<IMapEntitySendCallbackCommand, MapEntitySendCallbackCommand>();
 
 var app = builder.Build();
 
