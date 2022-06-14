@@ -2,7 +2,7 @@
 
 namespace NotificationsService.Hubs;
 
-public class MissionMapHub : Hub
+public class ServiceHub : Hub
 {
     public override Task OnConnectedAsync()
     {

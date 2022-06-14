@@ -16,11 +16,16 @@ builder.Services.AddSignalR();
 builder.Services.AddHostedService<WorkerService>();
 builder.Services.AddMessageBrokerPubSubServices(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
 builder.Services.AddScoped<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
-builder.Services.AddScoped(_ => new Settings { Topic = messageBrokerSettings.MissionMapTopic, Url = missionMapHubSettings.Url });
+builder.Services.AddScoped(_ => new Settings
+{
+    Topic = messageBrokerSettings.MissionMapTopic,
+    Url = missionMapHubSettings.Url,
+    MissionMapNameMethod = missionMapHubSettings.MissionMapNameMethod
+});
 
 var app = builder.Build();
 
-app.MapHub<MissionMapHub>("/", config =>
+app.MapHub<ServiceHub>("/", config =>
 {
     config.Transports = HttpTransportType.WebSockets;
 });
