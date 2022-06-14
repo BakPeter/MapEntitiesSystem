@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Configuration;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -19,28 +19,26 @@ namespace MissionMapClient
         {
             InitializeComponent();
 
-            //    var v= JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText("appsettings.json"));
-            var settings = new Settings
-            {
-                Url = "http://localhost:50003/wsnotificationservice",
-                MissionMapNameMethod = "MissionMapUpdated",
-                MapEntitiesNameMethod = "MapEntityUpdated"
-            };
+            var settings = JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText("appsettings.json"));
+
+            if (settings == null) 
+                return;
+
             _connection = new HubConnectionBuilder()
-                .WithUrl(settings.Url)
+                .WithUrl(settings.MissionMapHubSettings.Url)
                 .WithAutomaticReconnect()
                 .Build();
 
             _connection.Reconnecting += ConnectionOnReconnecting;
             _connection.Reconnected += ConnectionOnReconnected;
             _connection.Closed += ConnectionOnClosed;
-            _connection.On<string>(settings.MissionMapNameMethod, GetMissionMapMessage);
-            _connection.On<string>(settings.MapEntitiesNameMethod, GetMapEntityMessage);
+            _connection.On<string>(settings.MissionMapHubSettings.MissionMapNameMethod, GetMissionMapMessage);
+            _connection.On<string>(settings.MissionMapHubSettings.MapEntitiesNameMethod, GetMapEntityMessage);
 
             try
             {
+                Messages.Items.Add("Connecting...");
                 Connect();
-                Messages.Items.Add("Connection started");
             }
             catch (Exception e)
             {
@@ -81,10 +79,14 @@ namespace MissionMapClient
             try
             {
                 await _connection.StartAsync();
+                Messages.Items.Add("Connected");
             }
             catch (Exception e)
             {
                 Messages.Items.Add(e.Message);
+                Messages.Items.Add("Connection failed. Attempting to reconnect...");
+                Thread.Sleep(2000);
+                Connect();
             }
         }
     }
