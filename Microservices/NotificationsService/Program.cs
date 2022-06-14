@@ -18,7 +18,7 @@ var missionMapHubSettings = builder.Configuration.GetSection("MissionMapHubSetti
 builder.Services.AddSingleton(_ => new Settings
 {
     MissionMapTopic = messageBrokerSettings.MissionMapTopic,
-    EntitiesTopic = messageBrokerSettings.MissionMapTopic,
+    EntitiesTopic = messageBrokerSettings.EntitiesTopic,
     Url = missionMapHubSettings.Url,
     MissionMapMethodName = missionMapHubSettings.MissionMapNameMethod,
     MapEntitiesMethodName = missionMapHubSettings.MapEntitiesNameMethod
