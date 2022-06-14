@@ -10,12 +10,14 @@ internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackComm
 {
     private readonly IHubContext<ServiceHub> _missionMapHubContext;
     private readonly Settings _settings;
+    private readonly ILogger<MissionMapChangedCallbackCommand> _logger;
 
     public MissionMapChangedCallbackCommand(IHubContext<ServiceHub> missionMapHubContext,
-        Settings settings)
+        Settings settings, ILogger<MissionMapChangedCallbackCommand> logger)
     {
         _missionMapHubContext = missionMapHubContext;
         _settings = settings;
+        _logger = logger;
     }
 
     public MessageBrokerResultModel MissionMapChanged(string missionMapName)
@@ -27,7 +29,8 @@ internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackComm
         }
         catch (Exception ex)
         {
-            return new MessageBrokerResultModel(false, ex.Message);
+            _logger.LogError(ex.Message);
+            return new MessageBrokerResultModel(false, "Mission map client sync failed");
         }
     }
 }
