@@ -32,7 +32,9 @@ public class MissionMapService : IMissionMapService
         try
         {
             var result = await _mapsRepository.SetMissionMapAsync(mapName);
-            _publisher.Publish(_messageBrokerSettings.MissionMapTopic, mapName);
+            
+            if (result.Success)
+                _publisher.Publish(_messageBrokerSettings.MissionMapTopic, mapName);
 
             return result;
         }

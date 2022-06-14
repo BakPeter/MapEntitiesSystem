@@ -16,10 +16,4 @@
     <ProjectReference Include="..\MapEntitiesService.Core\MapEntitiesService.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="MessageBroker.Infrastructure">
-      <HintPath>..\MessageBroker.Infrastructure.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

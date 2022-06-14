@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntitiesCreator", "EntitiesCreator", "{50E87EF3-9C60-440A-8849-315EC713D825}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntitiesCreatorService", "EntitiesCreatorService", "{50E87EF3-9C60-440A-8849-315EC713D825}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapEntitiesService", "MapEntitiesService\MapEntitiesService.csproj", "{C1CDAE75-BBC1-482F-ABF1-0C72149DB281}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Core", "MessageBroker.Core\MessageBroker.Core.csproj", "{1B29B528-405D-4DEF-A95B-D03D04C7ECDB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Infrastructure", "MessageBroker.Infrastructure\MessageBroker.Infrastructure.csproj", "{51694364-14C9-495F-AB9C-5146B3D5D177}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationsService", "NotificationsService", "{D6965B55-7579-4A8B-9B0B-9C4C92F63EFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsService", "NotificationsService\NotificationsService.csproj", "{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,10 @@ Global
 		{51694364-14C9-495F-AB9C-5146B3D5D177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51694364-14C9-495F-AB9C-5146B3D5D177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51694364-14C9-495F-AB9C-5146B3D5D177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +90,7 @@ Global
 		{3DD78A21-846B-420E-B1B6-619FCC06C46E} = {868FCA84-E72B-478E-B27F-E1263B3D9FE2}
 		{1B29B528-405D-4DEF-A95B-D03D04C7ECDB} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
 		{51694364-14C9-495F-AB9C-5146B3D5D177} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
+		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410} = {D6965B55-7579-4A8B-9B0B-9C4C92F63EFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6488D464-1DC7-4BF1-8E93-E5E3BDC381B3}
