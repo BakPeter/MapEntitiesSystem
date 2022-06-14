@@ -10,4 +10,4 @@ public class MapEntityModel
     {
         return $"{Title}({Lat},{Lon})";
     }
-}
+} 

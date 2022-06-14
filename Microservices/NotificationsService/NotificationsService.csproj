@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MessageBroker.Core\MessageBroker.Core.csproj" />
     <ProjectReference Include="..\MessageBroker.Infrastructure\MessageBroker.Infrastructure.csproj" />
   </ItemGroup>

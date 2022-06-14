@@ -5,32 +5,33 @@ using NotificationsService.Configurations;
 using NotificationsService.Hubs;
 
 namespace NotificationsService.Commands;
-
-internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackCommand
+internal class MapEntitySendCallbackCommand : IMapEntitySendCallbackCommand
 {
     private readonly IHubContext<ServiceHub> _missionMapHubContext;
     private readonly Settings _settings;
-    private readonly ILogger<MissionMapChangedCallbackCommand> _logger;
+    private readonly ILogger<MapEntitySendCallbackCommand> _logger;
 
-    public MissionMapChangedCallbackCommand(IHubContext<ServiceHub> missionMapHubContext,
-        Settings settings, ILogger<MissionMapChangedCallbackCommand> logger)
+    public MapEntitySendCallbackCommand(
+        IHubContext<ServiceHub> missionMapHubContext, 
+        Settings settings, 
+        ILogger<MapEntitySendCallbackCommand> logger)
     {
         _missionMapHubContext = missionMapHubContext;
         _settings = settings;
         _logger = logger;
     }
 
-    public MessageBrokerResultModel MissionMapChanged(string missionMapName)
+    public MessageBrokerResultModel EntityPublished(string entity)
     {
         try
         {
-            _missionMapHubContext.Clients.All.SendAsync(_settings.MissionMapMethodName, missionMapName);
+            _missionMapHubContext.Clients.All.SendAsync(_settings.MapEntitiesMethodName, entity);
             return new MessageBrokerResultModel(true);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex.Message);
-            return new MessageBrokerResultModel(false, "Mission map client sync failed");
+            return new MessageBrokerResultModel(false, "Map Entity sync failed");
         }
     }
 }

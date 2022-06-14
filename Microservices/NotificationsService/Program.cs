@@ -8,24 +8,29 @@ using NotificationsService.Hubs;
 using NotificationsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var messageBrokerSettings = builder.Configuration.GetSection("MessageBrokerSettings").Get<MessageBrokerSettings>();
-var missionMapHubSettings = builder.Configuration.GetSection("MissionMapHubSettings").Get<MissionMapHubSettings>();
 
 builder.Services.AddSignalR();
 
 builder.Services.AddHostedService<WorkerService>();
-builder.Services.AddMessageBrokerPubSubServices(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
-builder.Services.AddScoped<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
+
+var messageBrokerSettings = builder.Configuration.GetSection("MessageBrokerSettings").Get<MessageBrokerSettings>();
+var missionMapHubSettings = builder.Configuration.GetSection("MissionMapHubSettings").Get<MissionMapHubSettings>();
 builder.Services.AddScoped(_ => new Settings
 {
-    Topic = messageBrokerSettings.MissionMapTopic,
+    MissionMapTopic = messageBrokerSettings.MissionMapTopic,
+    EntitiesTopic = messageBrokerSettings.MissionMapTopic,
     Url = missionMapHubSettings.Url,
-    MissionMapNameMethod = missionMapHubSettings.MissionMapNameMethod
+    MissionMapMethodName = missionMapHubSettings.MissionMapNameMethod,
+    MapEntitiesMethodName = missionMapHubSettings.MapEntitiesNameMethod
 });
+
+builder.Services.AddMessageBrokerPubSubServices(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
+builder.Services.AddScoped<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
+builder.Services.AddScoped<IMapEntitySendCallbackCommand, MapEntitySendCallbackCommand>();
 
 var app = builder.Build();
 
-app.MapHub<ServiceHub>("/", config =>
+app.MapHub<ServiceHub>(missionMapHubSettings.Url, config =>
 {
     config.Transports = HttpTransportType.WebSockets;
 });
