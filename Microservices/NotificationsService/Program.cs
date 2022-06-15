@@ -13,24 +13,16 @@ builder.Services.AddSignalR();
 
 builder.Services.AddHostedService<WorkerService>();
 
-var messageBrokerSettings = builder.Configuration.GetSection("MessageBrokerSettings").Get<MessageBrokerSettings>();
-var missionMapHubSettings = builder.Configuration.GetSection("MissionMapHubSettings").Get<MissionMapHubSettings>();
-builder.Services.AddSingleton(_ => new Settings
-{
-    MissionMapTopic = messageBrokerSettings.MissionMapTopic,
-    EntitiesTopic = messageBrokerSettings.EntitiesTopic,
-    Url = missionMapHubSettings.Url,
-    MissionMapMethodName = missionMapHubSettings.MissionMapNameMethod,
-    MapEntitiesMethodName = missionMapHubSettings.MapEntitiesNameMethod
-});
+var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
+builder.Services.AddSingleton(settings);
 
-builder.Services.AddMessageBrokerPubSubServicesSingelton(new RabbitMqConfiguration { HostName = messageBrokerSettings.HostName });
+builder.Services.AddMessageBrokerPubSubServices(new RabbitMqConfiguration { HostName = settings.HostName });
 builder.Services.AddSingleton<IMissionMapChangedCallbackCommand, MissionMapChangedCallbackCommand>();
 builder.Services.AddSingleton<IMapEntitySendCallbackCommand, MapEntitySendCallbackCommand>();
 
 var app = builder.Build();
 
-app.MapHub<ServiceHub>(missionMapHubSettings.Url, config =>
+app.MapHub<ServiceHub>(settings.Url, config =>
 {
     config.Transports = HttpTransportType.WebSockets;
 });

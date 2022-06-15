@@ -24,7 +24,7 @@ internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackComm
     {
         try
         {
-            _missionMapHubContext.Clients.All.SendAsync(_settings.MissionMapMethodName, missionMapName);
+            _missionMapHubContext.Clients.All.SendAsync(_settings.MissionMapNameMethod, missionMapName);
             return new MessageBrokerResultModel(true);
         }
         catch (Exception ex)

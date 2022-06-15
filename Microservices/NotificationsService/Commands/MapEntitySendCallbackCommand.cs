@@ -25,12 +25,12 @@ internal class MapEntitySendCallbackCommand : IMapEntitySendCallbackCommand
     {
         try
         {
-            _missionMapHubContext.Clients.All.SendAsync(_settings.MapEntitiesMethodName, entity);
+            _missionMapHubContext.Clients.All.SendAsync(_settings.MapEntitiesNameMethod, entity);
             return new MessageBrokerResultModel(true);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
+            _logger.LogError(ex, "errorMessage: {errorMessage}", ex.Message);
             return new MessageBrokerResultModel(false, "Map Entity sync failed");
         }
     }

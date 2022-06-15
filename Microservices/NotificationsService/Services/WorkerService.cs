@@ -26,7 +26,6 @@ internal class WorkerService : BackgroundService
     {
         _subscriber.Subscribe(_settings.MissionMapTopic, _missionMapChangedCallbackCommand.MissionMapChanged, stoppingToken);
         _subscriber.Subscribe(_settings.EntitiesTopic, _mapEntitySendCallbackCommand.EntityPublished, stoppingToken);
-
         return Task.CompletedTask;
     }
 }
