@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationsService", "Not
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationsService", "NotificationsService\NotificationsService.csproj", "{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{06EC5D9B-4BB9-4F73-A8F6-3E14D4C15AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "..\ApiGateway\ApiGateway.csproj", "{F07B5840-8E7E-4EFE-BE21-A447E26D5D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F07B5840-8E7E-4EFE-BE21-A447E26D5D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07B5840-8E7E-4EFE-BE21-A447E26D5D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07B5840-8E7E-4EFE-BE21-A447E26D5D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07B5840-8E7E-4EFE-BE21-A447E26D5D44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +99,7 @@ Global
 		{1B29B528-405D-4DEF-A95B-D03D04C7ECDB} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
 		{51694364-14C9-495F-AB9C-5146B3D5D177} = {3E754BCF-019C-48EA-B2CC-C6B25CE3BC14}
 		{BF2E7FB1-2418-4DF3-8740-EB5D51FDE410} = {D6965B55-7579-4A8B-9B0B-9C4C92F63EFB}
+		{F07B5840-8E7E-4EFE-BE21-A447E26D5D44} = {06EC5D9B-4BB9-4F73-A8F6-3E14D4C15AF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6488D464-1DC7-4BF1-8E93-E5E3BDC381B3}

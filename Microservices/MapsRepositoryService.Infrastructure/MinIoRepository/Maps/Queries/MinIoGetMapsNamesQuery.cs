@@ -46,7 +46,7 @@ internal class MinIoGetMapsNamesQuery : IGetMapsNamesQuery
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "{ErrorMessage}", ex.Message);
 
             var result = new MapNamesResultModel
             {
