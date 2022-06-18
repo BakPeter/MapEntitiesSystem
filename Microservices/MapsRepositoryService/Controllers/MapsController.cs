@@ -37,7 +37,7 @@ public class MapsController : Controller
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
+            _logger.LogError(ex, "Error: {errorMessage}", ex.Message);
             return new ResultModel(false, ErrorMessage: "Failed to add map");
         }
     }

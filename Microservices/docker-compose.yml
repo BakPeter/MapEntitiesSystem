@@ -1,6 +1,17 @@
 version: '3.4'
 
 services:
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    container_name: ApiGateway
+    ports:
+      - 55555:80
+    networks:
+      - main
+
   messageBroker:
     image: rabbitmq:3-management
     container_name: messageBroker
@@ -19,6 +30,17 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - C:\Docker\Data\MinIo:/data
+    networks:
+      - main
+
+  seqService:
+    image: datalust/seq:latest
+    container_name: seqLoggerService
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 8081:80
+      - 5341:5341
     networks:
       - main
 
@@ -62,17 +84,6 @@ services:
     depends_on:
       - messageBroker
       - apigateway
-    networks:
-      - main
-
-  apigateway:
-    image: ${DOCKER_REGISTRY-}apigateway
-    build:
-      context: .
-      dockerfile: ApiGateway/Dockerfile
-    container_name: ApiGateway
-    ports:
-      - 55555:80
     networks:
       - main
 
