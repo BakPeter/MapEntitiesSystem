@@ -13,6 +13,6 @@ public class MapEntityController : Controller
     public MapEntityController(IMapEntityService mapEntityService) => _mapEntityService = mapEntityService;
 
     [HttpPost]
-    public async Task<ResultModel> HandleEntityAsync([FromForm] MapEntityModel mapEntityModel) =>
+    public async Task<ResultModel> Post([FromForm] MapEntityModel mapEntityModel) =>
         await _mapEntityService.HandleMapEntityAsync(mapEntityModel);
 }
