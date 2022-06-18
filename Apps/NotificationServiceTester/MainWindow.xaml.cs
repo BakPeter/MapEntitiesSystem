@@ -37,7 +37,6 @@ namespace MissionMapClient
 
             try
             {
-                Messages.Items.Add("Connecting...");
                 Connect();
             }
             catch (Exception e)
@@ -78,6 +77,7 @@ namespace MissionMapClient
         {
             try
             {
+                Messages.Items.Add("Connecting...");
                 await _connection.StartAsync();
                 Messages.Items.Add("Connected");
             }

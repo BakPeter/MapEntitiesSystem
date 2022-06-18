@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MissionMapClient", "MissionMapClient\MissionMapClient.csproj", "{B153C9F9-8104-4DE4-991D-BF3CC23DD100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationServiceTester", "NotificationServiceTester\NotificationServiceTester.csproj", "{14F077D2-511F-4544-9FAB-1B485AC925C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B153C9F9-8104-4DE4-991D-BF3CC23DD100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B153C9F9-8104-4DE4-991D-BF3CC23DD100}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B153C9F9-8104-4DE4-991D-BF3CC23DD100}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B153C9F9-8104-4DE4-991D-BF3CC23DD100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {04CA0732-F5CD-4A1F-BA13-2E37F2BDF421}
+		SolutionGuid = {B7D954C4-8AE5-4672-81C5-2920274E223A}
 	EndGlobalSection
 EndGlobal

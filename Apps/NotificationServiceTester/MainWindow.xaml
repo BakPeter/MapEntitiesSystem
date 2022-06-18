@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto">
-            <ListBox x:Name="Messages" HorizontalAlignment="Stretch" Padding="20 10" BorderThickness="0"/>
+        <ScrollViewer Margin="20"
+                      VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="Messages" 
+                     HorizontalAlignment="Stretch"
+                     Padding="10"/>
         </ScrollViewer>
     </Grid>
 </Window>
