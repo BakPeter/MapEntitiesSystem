@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapEntitiesService.Core", "
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{87DB9FC3-F4F4-41EE-A767-C5DBF65A97CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapsService", "MapsService", "{868FCA84-E72B-478E-B27F-E1263B3D9FE2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapsRepositoryService", "MapsRepositoryService", "{868FCA84-E72B-478E-B27F-E1263B3D9FE2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapsRepositoryService", "MapsRepositoryService\MapsRepositoryService.csproj", "{C48BCFB7-8BBE-46DC-853C-F63BFFA8909A}"
 EndProject

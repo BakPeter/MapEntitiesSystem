@@ -24,13 +24,18 @@ internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackComm
     {
         try
         {
-            _logger.LogInformation("Mission map published: {missionMapName}", missionMapName);
+            _logger.LogInformation(
+                "Services project: service={service}, method={method}, dto={dto}",
+                "MissionMapChangedCallbackCommand",
+                "MessageBrokerResultModel",
+                missionMapName);
+            // _logger.LogInformation("Mission map published: {missionMapName}", missionMapName);
             _missionMapHubContext.Clients.All.SendAsync(_settings.MissionMapNameMethod, missionMapName);
             return new MessageBrokerResultModel(true);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error: {ex.Message}", ex.Message);
+            _logger.LogError(ex, "Error: {errorMessage}", ex.Message);
             return new MessageBrokerResultModel(false, "Mission map client sync failed");
         }
     }
