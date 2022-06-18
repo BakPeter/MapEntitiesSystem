@@ -1,5 +1,6 @@
 {
   "Routes": [
+    //Entities Creator Service, map entity controller
     {
       "DownstreamPathTemplate": "/mapentity",
       "DownstreamScheme": "http",
@@ -9,8 +10,59 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/entity/postentity",
+      "UpstreamPathTemplate": "/ocelot/entity",
       "UpstreamHttpMethod": [ "Post" ]
+    },
+    //Maps Service, MissionMapController
+    {
+      "DownstreamPathTemplate": "/missionmap",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mapsrepositoryservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/maps/missionmap",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    //Maps Service, MapsController
+    {
+      "DownstreamPathTemplate": "/maps",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mapsrepositoryservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/maps",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/maps/{mapname}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mapsrepositoryservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/maps/{mapname}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //NotificationService
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notificationsservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/{catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],
   "GlobalConfiguration": {}

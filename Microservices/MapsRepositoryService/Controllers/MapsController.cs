@@ -43,5 +43,5 @@ public class MapsController : Controller
     }
 
     [HttpDelete]
-    public async Task<ResultModel> Delete(string mapName) => await _mapsService.DeleteMapAsync(mapName);
+    public async Task<ResultModel> Delete([FromQuery] string mapName) => await _mapsService.DeleteMapAsync(mapName);
 }

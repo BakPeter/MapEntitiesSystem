@@ -22,12 +22,12 @@ internal class Publisher : IPublisher
         {
             var result = new MessageBrokerResultModel(Success: true, Message: message);
             _publisherAdapter.Publish(topic, message);
-            _logger.LogInformation($"Delivery success: {result.Message}");
+            _logger.LogInformation("Delivery success: {result.Message}", result.Message);
             return new MessageBrokerResultModel(Success: true);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Delivery failed: {e.Message}");
+            _logger.LogError(e, "Delivery failed: {e.Message}", e.Message);
             return new MessageBrokerResultModel(Success: false, Message: e.Message);
         }
     }

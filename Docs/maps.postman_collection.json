@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "f2713a73-0171-4209-be1d-045a01a8bf22",
+		"name": "maps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15783965"
+	},
+	"item": [
+		{
+			"name": "get mission map",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps/missionmap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps",
+						"missionmap"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set mission map",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mapname",
+							"value": "UsaaaMwwwwap.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps/missionmap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps",
+						"missionmap"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all maps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gat a map",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps/israelmap.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps",
+						"israelmap.png"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a map",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps?mapName=usmap.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps"
+					],
+					"query": [
+						{
+							"key": "mapName",
+							"value": "usmap.png"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload a map",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "File",
+							"type": "file",
+							"src": "/D:/Projects/MapEntitiesSystem/Maps/UsMap.jpg"
+						},
+						{
+							"key": "MapName",
+							"value": "UsaaaMwwwwap",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:55555/ocelot/maps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

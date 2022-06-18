@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "e2bff027-0428-45cc-8c13-3621ac90f0ee",
+		"name": "entities",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15783965"
+	},
+	"item": [
+		{
+			"name": "post entity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Title",
+							"value": "israel",
+							"type": "text"
+						},
+						{
+							"key": "Lat",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "Lon",
+							"value": "600",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:55555/ocelot/entity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"ocelot",
+						"entity"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

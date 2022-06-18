@@ -32,6 +32,7 @@ services:
       - 50001:80
     depends_on:
       - messageBroker
+      - apigateway
     networks:
       - main
 
@@ -45,6 +46,8 @@ services:
       - 50002:80
     depends_on:
       - minioDb
+      - apigateway
+      - messageBroker
     networks:
       - main
 
@@ -58,6 +61,7 @@ services:
       - 50003:80
     depends_on:
       - messageBroker
+      - apigateway
     networks:
       - main
 

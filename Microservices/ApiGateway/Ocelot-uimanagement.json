@@ -1,0 +1,31 @@
+{
+  "Routes": [
+    //minio ui
+    {
+      "DownstreamPathTemplate": "/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "minioDb",
+          "Port": 9001
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/imagesdb/ui",
+      "UpstreamHttpMethod": []
+    },
+    //rabbitmq
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "messageBroker",
+          "Port": 15672
+        }
+      ],
+      "UpstreamPathTemplate": "/ocelot/messagebroker/ui",
+      "UpstreamHttpMethod": []
+    }
+  ],
+  "GlobalConfiguration": {}
+}

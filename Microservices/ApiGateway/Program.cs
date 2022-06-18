@@ -9,5 +9,7 @@ builder.Services.AddOcelot();
 
 var app = builder.Build();
 
+app.UseWebSockets();
 app.UseOcelot().Wait();
+
 app.Run();
