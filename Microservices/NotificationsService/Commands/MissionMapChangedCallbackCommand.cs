@@ -2,17 +2,16 @@
 using Microsoft.AspNetCore.SignalR;
 using NotificationsService.Commands.Interfaces;
 using NotificationsService.Configurations;
-using NotificationsService.Hubs;
 
 namespace NotificationsService.Commands;
 
 internal class MissionMapChangedCallbackCommand : IMissionMapChangedCallbackCommand
 {
-    private readonly IHubContext<ServiceHub> _missionMapHubContext;
+    private readonly IHubContext _missionMapHubContext;
     private readonly Settings _settings;
     private readonly ILogger<MissionMapChangedCallbackCommand> _logger;
 
-    public MissionMapChangedCallbackCommand(IHubContext<ServiceHub> missionMapHubContext,
+    public MissionMapChangedCallbackCommand(IHubContext missionMapHubContext,
         Settings settings, ILogger<MissionMapChangedCallbackCommand> logger)
     {
         _missionMapHubContext = missionMapHubContext;
