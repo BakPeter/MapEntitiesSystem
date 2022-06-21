@@ -41,6 +41,8 @@ services:
     ports:
       - 8081:80
       - 5341:5341
+    volumes:
+      - C:\Docker\Data\Seq:/data
     networks:
       - main
 
@@ -50,8 +52,6 @@ services:
       context: .
       dockerfile: MapEntitiesService/Dockerfile
     container_name: mapEntitiesService
-    ports:
-      - 50001:80
     depends_on:
       - messageBroker
       - apigateway
@@ -64,8 +64,6 @@ services:
       context: .
       dockerfile: MapsRepositoryService/Dockerfile
     container_name: mapsRepositoryService
-    ports:
-      - 50002:80
     depends_on:
       - minioDb
       - apigateway
@@ -79,8 +77,6 @@ services:
       context: .
       dockerfile: NotificationsService/Dockerfile
     container_name: notificationsService
-    ports:
-      - 50003:80
     depends_on:
       - messageBroker
       - apigateway

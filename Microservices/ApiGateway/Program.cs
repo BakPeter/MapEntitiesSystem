@@ -7,9 +7,21 @@ builder.Configuration.AddJsonFile("Ocelot.json");
 
 builder.Services.AddOcelot();
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("CorsPolicy",
+//    builder => builder
+//    .WithOrigins("http://localhost:55555")
+//    .AllowAnyMethod()
+//    .AllowAnyHeader()
+//    .AllowCredentials()
+//    );
+//});
+
 var app = builder.Build();
 
 app.UseWebSockets();
-app.UseOcelot().Wait();
+
+await app.UseOcelot();
 
 app.Run();
