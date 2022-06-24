@@ -5,6 +5,15 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationServiceTester", "NotificationServiceTester\NotificationServiceTester.csproj", "{14F077D2-511F-4544-9FAB-1B485AC925C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapPresentorApp", "MapPresentorApp", "{B32B9160-F44E-4C66-92B0-249EF9DA8795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapPresenterApplication", "MapPresenterApplication\MapPresenterApplication.csproj", "{E3B73463-E57F-4731-9526-02A26F25198C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A586995-4592-4AF7-8959-C9996FEB7B4F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +24,16 @@ Global
 		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14F077D2-511F-4544-9FAB-1B485AC925C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B73463-E57F-4731-9526-02A26F25198C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B73463-E57F-4731-9526-02A26F25198C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B73463-E57F-4731-9526-02A26F25198C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B73463-E57F-4731-9526-02A26F25198C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3B73463-E57F-4731-9526-02A26F25198C} = {B32B9160-F44E-4C66-92B0-249EF9DA8795}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D954C4-8AE5-4672-81C5-2920274E223A}

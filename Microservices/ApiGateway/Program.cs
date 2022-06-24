@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("Ocelot.json");
 
 builder.Services.AddOcelot();
-// builder.Services.AddCors();
+builder.Services.AddCors();
 
 builder.Services.AddCors(options =>
 {

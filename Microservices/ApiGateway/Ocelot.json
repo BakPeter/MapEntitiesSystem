@@ -53,7 +53,7 @@
     },
     //NotificationService
     {
-      "DownstreamPathTemplate": "/ws/{catchAll}",
+      "DownstreamPathTemplate": "/}",
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
