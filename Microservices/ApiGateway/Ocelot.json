@@ -10,7 +10,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/entity",
+      "UpstreamPathTemplate": "/entity",
       "UpstreamHttpMethod": [ "Post" ]
     },
     //Maps Service, MissionMapController
@@ -23,7 +23,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps/missionmap",
+      "UpstreamPathTemplate": "/maps/missionmap",
       "UpstreamHttpMethod": [ "Get", "Post" ]
     },
     //Maps Service, MapsController
@@ -36,7 +36,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps",
+      "UpstreamPathTemplate": "/maps",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete" ]
     },
     {
@@ -48,10 +48,22 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps/{mapname}",
+      "UpstreamPathTemplate": "/maps/{mapname}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     //NotificationService
+    {
+      "DownstreamPathTemplate": "/ws",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notificationsservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ws",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+    },
     {
       "DownstreamPathTemplate": "/ws/{catchAll}",
       "DownstreamScheme": "ws",
@@ -62,6 +74,19 @@
         }
       ],
       "UpstreamPathTemplate": "/ws/{catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+    },
+    //sec service
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "seqService",
+          "Port": 5341
+        }
+      ],
+      "UpstreamPathTemplate": "/logs/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],

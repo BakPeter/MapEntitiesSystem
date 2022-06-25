@@ -23,6 +23,7 @@ builder.Logging.AddSerilog(logger);
 
 builder.Services.AddSignalR();
 
+
 builder.Services.AddHostedService<WorkerService>();
 
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
