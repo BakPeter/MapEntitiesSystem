@@ -78,7 +78,7 @@
     },
     //Seq service
     {
-      "DownstreamPathTemplate": "/",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -86,7 +86,7 @@
           "Port": 5341
         }
       ],
-      "UpstreamPathTemplate": "/logs",
+      "UpstreamPathTemplate": "/logs/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],
