@@ -53,7 +53,6 @@
     },
     //NotificationService
     {
-<<<<<<< HEAD
       "DownstreamPathTemplate": "/ws",
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
@@ -67,9 +66,6 @@
     },
     {
       "DownstreamPathTemplate": "/ws/{catchAll}",
-=======
-      "DownstreamPathTemplate": "/}",
->>>>>>> 4e772cfaf017ea32c9c9aebaee86be71a30c2c8d
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
@@ -80,14 +76,14 @@
       "UpstreamPathTemplate": "/ws/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
-    //sec service
+    //seq service
     {
       "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "seqService",
-          "Port": 5341
+          "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/logs/{catchAll}",
