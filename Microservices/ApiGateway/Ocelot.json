@@ -1,6 +1,6 @@
 {
   "Routes": [
-    //Entities Creator Service, map entity controller
+    //Entities Creator Service, MapEntityController
     {
       "DownstreamPathTemplate": "/mapentity",
       "DownstreamScheme": "http",
@@ -76,17 +76,17 @@
       "UpstreamPathTemplate": "/ws/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
-    //seq service
+    //Seq service
     {
-      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamPathTemplate": "/",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "seqService",
-          "Port": 8081
+          "Port": 5341
         }
       ],
-      "UpstreamPathTemplate": "/logs/{catchAll}",
+      "UpstreamPathTemplate": "/logs",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],

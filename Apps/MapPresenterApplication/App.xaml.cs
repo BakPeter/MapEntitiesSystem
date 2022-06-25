@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace MapPresenterApplication;
 
@@ -16,8 +18,14 @@ public partial class App : Application
                 .Build();
 
         _host = Host.CreateDefaultBuilder()
+            .UseSerilog((hostingContext, loggerConfiguration) =>
+            {
+                loggerConfiguration
+                    .ReadFrom.Configuration(hostingContext.Configuration)
+                    .Enrich.FromLogContext();
+            })
             .ConfigureServices((_, services)
-                => ConfigurationHelper.ConfigureServices(services, config))
+                => ServiceCollectionConfigurationHelper.ConfigureServices(services, config))
             .Build();
     }
 
@@ -25,8 +33,8 @@ public partial class App : Application
     {
         await _host.StartAsync();
 
-        //var mainWindow = _host.Services.GetRequiredService<MainWindow>();
-        //mainWindow.Show();
+        var mainWindow = _host.Services.GetRequiredService<MainWindow>();
+        mainWindow.Show();
 
         base.OnStartup(e);
     }

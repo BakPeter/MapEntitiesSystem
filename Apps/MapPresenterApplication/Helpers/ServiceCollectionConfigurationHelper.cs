@@ -5,7 +5,9 @@ namespace MapPresenterApplication.Helpers;
 
 internal class ServiceCollectionConfigurationHelper
 {
-    public static void ConfigureServices(IServiceCollection services, IConfigurationRoot? configuration)
+    public static void ConfigureServices(
+        IServiceCollection services,
+        IConfigurationRoot? configuration)
     {
         services.AddSingleton<MainWindow>();
 
