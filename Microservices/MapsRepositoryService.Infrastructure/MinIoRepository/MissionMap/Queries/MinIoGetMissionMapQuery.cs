@@ -46,6 +46,7 @@ internal class MinIoGetMissionMapQuery : IGetMissionMapQuery
             {
                 Success = true,
                 MapBase64 = Convert.ToBase64String(memoryStream.ToArray()),
+                MapName = item.Key,
                 ErrorMessage = ""
             };
 
