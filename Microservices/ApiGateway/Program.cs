@@ -19,7 +19,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseRouting().UseCors("CorsPolicy");
 app.UseWebSockets();
+
 await app.UseOcelot();
 
 app.Run();
