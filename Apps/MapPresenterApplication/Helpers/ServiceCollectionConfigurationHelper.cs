@@ -14,6 +14,6 @@ internal class ServiceCollectionConfigurationHelper
         services.AddHttpClient();
 
         services.AddSingleton<MainWindow>();
-        services.AddScoped<IMissionMapHandler, MissionMapHandler>();
+        services.AddScoped<IMissionMapService, MissionMapService>();
     }
 }

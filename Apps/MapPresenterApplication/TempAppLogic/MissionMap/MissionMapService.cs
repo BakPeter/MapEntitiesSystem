@@ -5,11 +5,11 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace MapPresenterApplication.TempAppLogic.MissionMap;
-public class MissionMapHandler : IMissionMapHandler
+public class MissionMapService : IMissionMapService
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public MissionMapHandler(IHttpClientFactory httpClientFactory)
+    public MissionMapService(IHttpClientFactory httpClientFactory)
         => _httpClientFactory = httpClientFactory;
 
     public async Task<GetMissionMapResultModel?> GetMissionMapAsync()

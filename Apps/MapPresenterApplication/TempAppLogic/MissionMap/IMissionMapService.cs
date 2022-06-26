@@ -2,7 +2,7 @@
 
 namespace MapPresenterApplication.TempAppLogic.MissionMap;
 
-public interface IMissionMapHandler
+public interface IMissionMapService
 {
     Task<GetMissionMapResultModel?> GetMissionMapAsync();
 }

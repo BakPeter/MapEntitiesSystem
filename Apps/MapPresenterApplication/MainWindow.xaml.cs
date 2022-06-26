@@ -11,9 +11,9 @@ namespace MapPresenterApplication;
 
 public partial class MainWindow : Window
 {
-    private readonly IMissionMapHandler _missionMapHandler;
+    private readonly IMissionMapService _missionMapHandler;
 
-    public MainWindow(IMissionMapHandler missionMapHandler)
+    public MainWindow(IMissionMapService missionMapHandler)
     {
         _missionMapHandler = missionMapHandler;
         InitializeComponent();
