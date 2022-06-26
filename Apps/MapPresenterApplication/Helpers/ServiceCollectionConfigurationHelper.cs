@@ -9,8 +9,8 @@ internal class ServiceCollectionConfigurationHelper
         IServiceCollection services,
         IConfigurationRoot? configuration)
     {
-        services.AddSingleton<MainWindow>();
+        services.AddSingleton(ConfigurationsInitializerHelper.GetSettings(configuration));
 
-        //services.AddSingleton(settings);
+        services.AddSingleton<MainWindow>();
     }
 }
