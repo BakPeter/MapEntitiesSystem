@@ -1,0 +1,56 @@
+.cellTop {
+  vertical-align: top;
+}
+
+.mapNameItem {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #fbfbfb;
+  width: auto;
+  display: table;
+  border-radius: 10px;
+  margin: 10px;
+  margin-left: 0px;
+  line-height: 20px;
+  border: solid 1px #e6e6e6;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.mapNameItem:hover {
+  background-color: #006699;
+  color: white;
+}
+
+.mapNameItem:hover .bullet {
+  background-color: white;
+}
+
+.imageItem {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #fbfbfb;
+  width: auto;
+  border-radius: 6px;
+  margin: 10px;
+  margin-left: 0px;
+  line-height: 20px;
+  border: solid 1px #e6e6e6;
+  max-width: 1400px;
+  max-height: 1000px;
+}
+
+.bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #006699;
+  display: block;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.imageCell{
+    padding: 10px;
+}

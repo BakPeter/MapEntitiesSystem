@@ -1,0 +1,33 @@
+<table>
+  <tbody>
+    <tr>
+      <td class="cellTop">
+        <mat-selection-list #mapsList [multiple]="false">
+          <mat-list-option
+            *ngFor="let map of maps"
+            [value]="map"
+            class="mapNameItem"
+            (selectedChange)="onMapSelected(map)"
+          >
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="bullet"></div>
+                  </td>
+                  <td>{{ map }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-list-option>
+        </mat-selection-list>
+      </td>
+      <td class="imageCell">
+        <img [src]="imagePath" *ngIf="imageIsVisible" class="imageItem" />
+        <div>
+          {{ mapsList.selectedOptions.selected[0]?.value }}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

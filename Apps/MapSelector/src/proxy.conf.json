@@ -1,0 +1,10 @@
+{
+    "/maps": {
+      "target": "http://localhost:55555/maps",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/maps": ""
+      }
+    }
+  }
