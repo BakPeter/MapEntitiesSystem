@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MapEntity } from '../MapEntity';
 import { MapDto } from '../MapDto';
-import { MissionMapDto } from '../MissionMapDto';
+import { ResultModel } from '../ResultModel';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -23,9 +23,9 @@ export class MapEntityService {
     return this.http.get<MapDto>(mapDtoUrl);
   }
 
-  setMissionMap(mapName: string): Observable<MissionMapDto> {
+  setMissionMap(mapName: string): Observable<ResultModel> {
     const formData: FormData = new FormData();
     formData.append('mapName', mapName);
-    return this.http.post<MissionMapDto>(this.missionMapApiUrl, formData);
+    return this.http.post<ResultModel>(this.missionMapApiUrl, formData);
   }
 }

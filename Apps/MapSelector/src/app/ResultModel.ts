@@ -1,4 +1,4 @@
-export interface MissionMapDto {
+export interface ResultModel {
     success: boolean;
     errorMessage: string;
   }
