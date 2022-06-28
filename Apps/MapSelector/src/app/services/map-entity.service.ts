@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MapEntity } from '../MapEntity';
-import { MapDto } from '../MapDto';
-import { ResultModel } from '../ResultModel';
+import { MapEntity } from '../models/MapEntity';
+import { MapDto } from '../models/MapDto';
+import { ResultModel } from '../models/ResultModel';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
