@@ -1,40 +1,50 @@
 <form>
-  <div class="mainTable">
-    <div class="tableRow">
-      <mat-form-field class="example-form-field">
+  <div>
+    <div>
+      <mat-form-field>
         <input
           matInput
           #titleInput
+          required
           type="text"
           placeholder="Title:"
           autocomplete="off"
         />
       </mat-form-field>
     </div>
-    <div class="tableRow">
-      <mat-form-field class="example-form-field">
+    <div>
+      <mat-form-field>
         <input
           matInput
           #latInput
+          required
           type="number"
           placeholder="Lat:"
           autocomplete="off"
         />
       </mat-form-field>
     </div>
-    <div class="tableRow">
-      <mat-form-field class="example-form-field">
+    <div>
+      <mat-form-field>
         <input
           matInput
           #lonInput
+          required
           type="number"
           placeholder="Lon:"
           autocomplete="off"
         />
       </mat-form-field>
     </div>
-    <div style="margin-top: 10px; text-align: right">
+    <div>
       <button
+        [disabled]="
+          !(
+            titleInput.checkValidity() &&
+            latInput.checkValidity() &&
+            lonInput.checkValidity()
+          )
+        "
         mat-raised-button
         color="primary"
         (click)="addEntity(titleInput.value, latInput.value, lonInput.value)"
@@ -42,8 +52,8 @@
         Add
       </button>
     </div>
-    <div class="addedEntityText">
-      {{addedEntityStatus}}
+    <div>
+      {{ addedEntityStatus }}
     </div>
   </div>
 </form>

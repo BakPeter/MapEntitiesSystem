@@ -22,11 +22,6 @@ export class MapRepositoryComponent implements OnInit {
   ngOnInit(): void {
     this.mapEntityService.getMapEntities().subscribe((ent) => {
       this.maps = ent.mapsNames;
-      console.log(
-        `${
-          this.maps.length
-        } map entities loaded at ${new Date().toLocaleTimeString()}`
-      );
     });
   }
 

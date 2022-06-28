@@ -10,7 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 import { MapEntityComponent } from './map-entity/map-entity.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,11 +22,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MapEntityComponent,
-    MapRepositoryComponent
-  ],
+  declarations: [AppComponent, MapEntityComponent, MapRepositoryComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
