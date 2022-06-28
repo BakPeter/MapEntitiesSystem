@@ -12,8 +12,8 @@ internal class MapEntitySendCallbackCommand : IMapEntitySendCallbackCommand
     private readonly ILogger<MapEntitySendCallbackCommand> _logger;
 
     public MapEntitySendCallbackCommand(
-        IHubContext<ServiceHub> missionMapHubContext, 
-        Settings settings, 
+        IHubContext<ServiceHub> missionMapHubContext,
+        Settings settings,
         ILogger<MapEntitySendCallbackCommand> logger)
     {
         _missionMapHubContext = missionMapHubContext;
@@ -25,6 +25,12 @@ internal class MapEntitySendCallbackCommand : IMapEntitySendCallbackCommand
     {
         try
         {
+            _logger.LogInformation(
+                "Services project: service={service}, method={method}, dto={dto}",
+                "MapEntitySendCallbackCommand",
+                "EntityPublished",
+                entity);
+            //_logger.LogInformation("Mission map published: {missionMapName}", missionMapName);
             _missionMapHubContext.Clients.All.SendAsync(_settings.MapEntitiesNameMethod, entity);
             return new MessageBrokerResultModel(true);
         }
