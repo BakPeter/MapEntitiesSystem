@@ -2,21 +2,48 @@
   <div class="mainTable">
     <div class="tableRow">
       <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="Name:" autocomplete="off" />
+        <input
+          matInput
+          #titleInput
+          type="text"
+          placeholder="Title:"
+          autocomplete="off"
+        />
       </mat-form-field>
     </div>
     <div class="tableRow">
       <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="X:" autocomplete="off" />
+        <input
+          matInput
+          #latInput
+          type="number"
+          placeholder="Lat:"
+          autocomplete="off"
+        />
       </mat-form-field>
     </div>
     <div class="tableRow">
       <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="Y:" autocomplete="off" />
+        <input
+          matInput
+          #lonInput
+          type="number"
+          placeholder="Lon:"
+          autocomplete="off"
+        />
       </mat-form-field>
     </div>
-    <div style="margin-top:10px ;text-align: right ;">
-      <button mat-raised-button color="primary" (click)="addEntity()">Add</button>
-      </div>
+    <div style="margin-top: 10px; text-align: right">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addEntity(titleInput.value, latInput.value, lonInput.value)"
+      >
+        Add
+      </button>
+    </div>
+    <div class="addedEntityText">
+      {{addedEntityStatus}}
+    </div>
   </div>
 </form>

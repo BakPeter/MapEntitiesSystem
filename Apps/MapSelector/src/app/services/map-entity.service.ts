@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class MapEntityService {
   private mapsEntityApiUrl: string = 'http://localhost:55555/maps';
   private missionMapApiUrl: string = 'http://localhost:55555/maps/missionmap';
+  private mapEntityApiUrl: string = 'http://localhost:55555/entity';
 
   constructor(private http: HttpClient) {}
 
@@ -27,5 +28,17 @@ export class MapEntityService {
     const formData: FormData = new FormData();
     formData.append('mapName', mapName);
     return this.http.post<ResultModel>(this.missionMapApiUrl, formData);
+  }
+
+  addMapEntity(
+    title: string,
+    lat: number,
+    lon: number
+  ): Observable<ResultModel> {
+    const formData: FormData = new FormData();
+    formData.append('Title', title);
+    formData.append('Lat', lat.toString());
+    formData.append('Lon', lon.toString());
+    return this.http.post<ResultModel>(this.mapEntityApiUrl, formData);
   }
 }

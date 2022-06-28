@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapEntityService } from '../services/map-entity.service';
 
 @Component({
   selector: 'app-map-entity',
@@ -6,12 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map-entity.component.css'],
 })
 export class MapEntityComponent implements OnInit {
-  constructor() {}
+  addedEntityStatus: string = '';
+
+  constructor(private mapEntityService: MapEntityService) {}
 
   ngOnInit(): void {}
 
-  addEntity() {
-    console.log('entity added');
+  addEntity(title: string, lat: string, lon: string) {
+    this.mapEntityService
+      .addMapEntity(title, Number.parseFloat(lat), Number.parseFloat(lon))
+      .subscribe((result) => {
+        this.addedEntityStatus = result.success
+          ? `${title} added at ${lat},${lon}`
+          : result.errorMessage;
+      });
     return false;
   }
 }

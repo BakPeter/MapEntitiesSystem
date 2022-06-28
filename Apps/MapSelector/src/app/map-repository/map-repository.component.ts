@@ -41,10 +41,10 @@ export class MapRepositoryComponent implements OnInit {
   }
 
   setMissionMap(mapName: string) {
-    this.mapEntityService.setMissionMap(mapName).subscribe((missionMapDto) => {
-      this.missionMapUpdateStatus = missionMapDto.success
+    this.mapEntityService.setMissionMap(mapName).subscribe((result) => {
+      this.missionMapUpdateStatus = result.success
         ? `Mission map updated to ${mapName}`
-        : missionMapDto.errorMessage;
+        : result.errorMessage;
     });
   }
 }

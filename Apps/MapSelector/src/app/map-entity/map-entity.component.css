@@ -2,3 +2,9 @@
   display: table;
   margin-top: 10px;
 }
+
+.addedEntityText {
+  color: #006699;
+  font-style: italic;
+  line-height: 40px;
+}

@@ -16,3 +16,9 @@ body {
 .tableCell {
   display: table-cell;
 }
+
+.remark {
+  color: darkgray;
+  line-height: 50px;
+  font-size: 11px;
+}
