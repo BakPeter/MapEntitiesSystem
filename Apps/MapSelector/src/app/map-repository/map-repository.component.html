@@ -22,10 +22,19 @@
           </mat-list-option>
         </mat-selection-list>
       </td>
-      <td class="imageCell">
-        <img [src]="imagePath" *ngIf="imageIsVisible" class="imageItem" />
+      <td class="imageCell" *ngIf="imageIsVisible">
+        <img [src]="imagePath" class="imageItem" />
         <div>
-          {{ mapsList.selectedOptions.selected[0]?.value }}
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="setMissionMap(mapsList.selectedOptions.selected[0]?.value)"
+          >
+            Set mission map [{{ mapsList.selectedOptions.selected[0]?.value }}]
+          </button>
+        </div>
+        <div class="remark">
+          {{missionMapUpdateStatus}}
         </div>
       </td>
     </tr>

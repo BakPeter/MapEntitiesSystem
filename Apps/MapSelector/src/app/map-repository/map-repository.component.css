@@ -51,6 +51,12 @@
   margin-right: 10px;
 }
 
-.imageCell{
-    padding: 10px;
+.imageCell {
+  padding: 10px;
+}
+
+.remark {
+  color: darkgray;
+  line-height: 50px;
+  font-size: 11px;
 }

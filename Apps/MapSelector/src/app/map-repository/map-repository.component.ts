@@ -7,12 +7,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './map-repository.component.html',
   styleUrls: ['./map-repository.component.css'],
 })
-
 export class MapRepositoryComponent implements OnInit {
   maps: string[] = [];
   imagePath: SafeResourceUrl = '';
   imageIsVisible: boolean = false;
   selectedMap: string = '';
+  missionMapUpdateStatus: string = '';
 
   constructor(
     private mapEntityService: MapEntityService,
@@ -41,6 +41,10 @@ export class MapRepositoryComponent implements OnInit {
   }
 
   setMissionMap(mapName: string) {
-    console.log(mapName);
-  }  
+    this.mapEntityService.setMissionMap(mapName).subscribe((missionMapDto) => {
+      this.missionMapUpdateStatus = missionMapDto.success
+        ? `Mission map updated to ${mapName}`
+        : missionMapDto.errorMessage;
+    });
+  }
 }
