@@ -6,10 +6,23 @@ using NotificationsService.Commands.Interfaces;
 using NotificationsService.Configurations;
 using NotificationsService.Hubs;
 using NotificationsService.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region Serlog
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
+#endregion
+
 builder.Services.AddSignalR();
+
 
 builder.Services.AddHostedService<WorkerService>();
 

@@ -29,6 +29,11 @@ public class MapEntityService : IMapEntityService
     {
         try
         {
+            _logger.LogInformation(
+                "Services project: service={service}, method={method}, dto={dto}",
+                "MapEntityService",
+                "HandleMapEntityAsync",
+                mapEntityModel);
             var validationResult = _entityValidator.Validate(mapEntityModel);
             if (!validationResult.Success)
             {
@@ -41,7 +46,7 @@ public class MapEntityService : IMapEntityService
         }
         catch (Exception e)
         {
-            _logger.LogError(e, message: "HandleMapEntityAsync method failed.");
+            _logger.LogError(e, message: "HandleMapEntityAsync method failed, {errorMessage}", e.Message);
             return new ResultModel(Success: false, ErrorMessage: e.Message);
         }
     }

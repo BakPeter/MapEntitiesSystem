@@ -1,6 +1,6 @@
 {
   "Routes": [
-    //Entities Creator Service, map entity controller
+    //Entities Creator Service, MapEntityController
     {
       "DownstreamPathTemplate": "/mapentity",
       "DownstreamScheme": "http",
@@ -10,7 +10,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/entity",
+      "UpstreamPathTemplate": "/entity",
       "UpstreamHttpMethod": [ "Post" ]
     },
     //Maps Service, MissionMapController
@@ -23,7 +23,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps/missionmap",
+      "UpstreamPathTemplate": "/maps/missionmap",
       "UpstreamHttpMethod": [ "Get", "Post" ]
     },
     //Maps Service, MapsController
@@ -36,7 +36,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps",
+      "UpstreamPathTemplate": "/maps",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete" ]
     },
     {
@@ -48,12 +48,12 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/maps/{mapname}",
+      "UpstreamPathTemplate": "/maps/{mapname}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     //NotificationService
     {
-      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamPathTemplate": "/ws",
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
@@ -61,7 +61,32 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ocelot/{catchAll}",
+      "UpstreamPathTemplate": "/ws",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ws/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notificationsservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ws/{catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+    },
+    //Seq service
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "seqService",
+          "Port": 5341
+        }
+      ],
+      "UpstreamPathTemplate": "/logs/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MissionMapClient.Configurations;
 using Newtonsoft.Json;
 
-namespace MissionMapClient
+namespace NotificationServiceTester
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
