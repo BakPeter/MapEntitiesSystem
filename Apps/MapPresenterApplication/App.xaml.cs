@@ -1,7 +1,7 @@
-﻿using MapPresenterApplication.Helpers;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using MapPresenterApplication.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
@@ -25,7 +25,7 @@ public partial class App : Application
                     .Enrich.FromLogContext();
             })
             .ConfigureServices((_, services)
-                => ServiceCollectionConfigurationHelper.ConfigureServices(services, config))
+                => services.RegisterMapPresenterAppServices(config))
             .Build();
     }
 

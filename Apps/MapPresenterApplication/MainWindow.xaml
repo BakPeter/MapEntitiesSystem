@@ -6,8 +6,21 @@
         xmlns:local="clr-namespace:MapPresenterApplication"
         mc:Ignorable="d"
         Title="MapPresenterApp" Height="450" Width="800">
-    <Grid>
-        <Image x:Name="MissionMapImage" Stretch="Fill"></Image>
-        <Button Click="ButtonBase_OnClick" Width="100" Height="50" Content="Get Mission Map"></Button>
+    <Grid x:Name="MainViewGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Image x:Name="MissionMapImage"
+               Grid.Row="0"
+               Grid.Column="0"
+               Stretch="Fill"/>
+        <Canvas x:Name="EntitiesShowerCanvas"
+               Grid.Row="0"
+               Grid.Column="0" />
     </Grid>
 </Window>

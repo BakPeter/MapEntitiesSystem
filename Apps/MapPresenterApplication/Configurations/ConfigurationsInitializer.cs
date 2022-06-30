@@ -1,10 +1,9 @@
 ﻿using System;
-using MapPresenterApplication.Configurations;
 using Microsoft.Extensions.Configuration;
 
-namespace MapPresenterApplication.Helpers;
+namespace MapPresenterApplication.Configurations;
 
-internal class ConfigurationsInitializerHelper
+internal class ConfigurationsInitializer
 {
     public static Settings GetSettings(IConfigurationRoot? configuration)
     {
@@ -12,13 +11,13 @@ internal class ConfigurationsInitializerHelper
             GetDefaultConfigurations() :
             GetCalculatedConfigurations(configuration);
     }
-    
+
     private static Settings GetCalculatedConfigurations(IConfigurationRoot configuration)
     {
         if (configuration is null)
             throw new ArgumentNullException(nameof(configuration));
 
-        var hubSettings = configuration.GetSection("MissionMapHubSettings").Get<HubSettings>();
+        var hubSettings = configuration.GetSection("HubSettings").Get<HubSettings>();
         return new Settings
         {
             HubSettings = hubSettings,
