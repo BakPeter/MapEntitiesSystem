@@ -1,4 +1,6 @@
-﻿namespace MapEntitiesService.Core.Model;
+﻿using System.Text.Json;
+
+namespace MapEntitiesService.Core.Model;
 
 public class MapEntityModel
 {
@@ -8,6 +10,6 @@ public class MapEntityModel
 
     public override string ToString()
     {
-        return $"{Title}({Lat},{Lon})";
+        return   JsonSerializer.Serialize(this);
     }
 } 
