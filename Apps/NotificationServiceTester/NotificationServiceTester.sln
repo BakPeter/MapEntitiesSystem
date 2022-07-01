@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationServiceTester", "NotificationServiceTester\NotificationServiceTester.csproj", "{06645DE3-0833-4946-8161-CE294303C9D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85BF1B77-7B07-48E3-8D80-2AEEAB061FF3}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06645DE3-0833-4946-8161-CE294303C9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06645DE3-0833-4946-8161-CE294303C9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06645DE3-0833-4946-8161-CE294303C9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06645DE3-0833-4946-8161-CE294303C9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A3494C4-DB34-4206-A536-A6A9EE2C6B98}
+	EndGlobalSection
+EndGlobal
