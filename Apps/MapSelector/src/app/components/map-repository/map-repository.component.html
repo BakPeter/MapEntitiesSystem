@@ -2,30 +2,45 @@
   <tbody>
     <tr>
       <td class="cellTop">
-        <mat-selection-list #mapsList [multiple]="false">
+        <mat-selection-list
+          #mapsList
+          [multiple]="false"
+          (selectionChange)="
+            onMapSelected(mapsList.selectedOptions.selected[0]?.value)
+          "
+        >
           <mat-list-option
             *ngFor="let map of maps"
             [value]="map"
             class="mapNameItem"
-            (selectedChange)="onMapSelected(map)"
           >
-          {{ map }}
+            <div>
+              <span>{{ map }}</span>
+              <mat-icon
+                *ngIf="isMissionMap(map)"
+                aria-hidden="false"
+                aria-label="mission map"
+                class="goldColor"
+                >star</mat-icon
+              >
+            </div>
           </mat-list-option>
         </mat-selection-list>
       </td>
-      <td class="imageCell" *ngIf="imageIsVisible">
+      <td class="imageCell">
         <img [src]="imagePath" class="imageItem" />
         <div>
           <button
+            [disabled]="
+              mapsList.selectedOptions.selected[0] == null ||
+              mapsList.selectedOptions.selected[0]?.value == missionMapName
+            "
             mat-stroked-button
             color="primary"
             (click)="setMissionMap(mapsList.selectedOptions.selected[0]?.value)"
           >
             Set mission map
           </button>
-        </div>
-        <div>
-          {{missionMapUpdateStatus}}
         </div>
       </td>
     </tr>

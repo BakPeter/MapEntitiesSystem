@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MapEntity } from '../models/MapEntity';
 import { MapDto } from '../models/MapDto';
+import { MissionMapDto } from '../models/MissionMapDto';
 import { ResultModel } from '../models/ResultModel';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,6 +23,10 @@ export class MapEntityService {
   getMapBase64(mapName: string): Observable<MapDto> {
     const mapDtoUrl: string = `${this.mapsEntityApiUrl}/${mapName}`;
     return this.http.get<MapDto>(mapDtoUrl);
+  }
+
+  getMissionMap(): Observable<MissionMapDto> {
+    return this.http.get<MissionMapDto>(this.missionMapApiUrl);
   }
 
   setMissionMap(mapName: string): Observable<ResultModel> {

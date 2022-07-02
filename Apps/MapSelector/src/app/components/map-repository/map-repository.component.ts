@@ -10,9 +10,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class MapRepositoryComponent implements OnInit {
   maps: string[] = [];
   imagePath: SafeResourceUrl = '';
-  imageIsVisible: boolean = false;
   selectedMap: string = '';
-  missionMapUpdateStatus: string = '';
+  missionMapName: string = '';
 
   constructor(
     private mapEntityService: MapEntityService,
@@ -23,23 +22,47 @@ export class MapRepositoryComponent implements OnInit {
     this.mapEntityService.getMapEntities().subscribe((ent) => {
       this.maps = ent.mapsNames;
     });
+
+    this.mapEntityService.getMissionMap().subscribe((dto) => {
+      if (dto.success) {
+        this.setMapName(dto.mapName);
+        this.setMissionMapName(dto.mapName);
+        this.setMapImage(dto.mapBase64);
+      }
+    });
+  }
+
+  setMapName(mapName: string) {
+    this.selectedMap = mapName;
+  }
+
+  setMissionMapName(missionMapName: string) {
+    this.missionMapName = missionMapName;
+  }
+
+  setMapImage(imageBase64: string) {
+    this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
+      'data:image;base64,' + imageBase64
+    );
   }
 
   onMapSelected(mapName: string) {
     this.selectedMap = mapName;
-    this.mapEntityService.getMapBase64(mapName).subscribe((mapDto) => {
-      this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
-        'data:image;base64,' + mapDto.mapBase64
-      );
-      this.imageIsVisible = true;
+    this.mapEntityService.getMapBase64(mapName).subscribe((dto) => {
+      this.setMapName(mapName);
+      this.setMapImage(dto.mapBase64);
     });
   }
 
-  setMissionMap(mapName: string) {
-    this.mapEntityService.setMissionMap(mapName).subscribe((result) => {
-      this.missionMapUpdateStatus = result.success
-        ? `Mission map updated to ${mapName}`
-        : result.errorMessage;
+  setMissionMap(missionMapName: string) {
+    this.mapEntityService.setMissionMap(missionMapName).subscribe((result) => {
+      if (result.success) {
+        this.setMissionMapName(missionMapName);
+      }
     });
+  }
+
+  isMissionMap(missionMap: string): boolean {
+    return missionMap != null && missionMap == this.missionMapName;
   }
 }

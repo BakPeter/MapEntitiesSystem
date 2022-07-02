@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MapEntityComponent } from './components/map-entity/map-entity.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,6 +35,8 @@ const appRoutes: Routes = [
     MatChipsModule,
     HttpClientModule,
     MatListModule,
+    MatIconModule,
+    MatSelectModule,
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
   ],
   providers: [],
