@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MapEntityComponent } from './components/map-entity/map-entity.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MapRepositoryComponent } from './components/map-repository/map-repository.component';
+import { MapViewComponent } from './components/map-view/map-view.component';
 
 const appRoutes: Routes = [
   { path: '', component: MapEntityComponent },
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, MapEntityComponent, MapRepositoryComponent],
+  declarations: [AppComponent, MapEntityComponent, MapRepositoryComponent, MapViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,14 @@
+.imageItem {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #fbfbfb;
+  width: auto;
+  border-radius: 6px;
+  margin: 10px;
+  margin-left: 0px;
+  line-height: 20px;
+  border: solid 1px #e6e6e6;
+  max-width: 1400px;
+  max-height: 1000px;
+}
