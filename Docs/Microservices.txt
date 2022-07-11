@@ -1,0 +1,36 @@
+-Microservices-
+Scalability (running several containers of the same image)
+Loosly coupled (container can be replaced / changed without changing other components)
+Not depended on OS / hardware - only dependent on Docker
+Not depended on location (could be on cloud / different locations) 
+Highly maintainable and testable.
+Technology flexibillity - individual units are fast and easy to deploy.
+Reliabillity - changes can be deployed without threat of bringing down the entire application.
+
+--Add disadvantages--
+
+
+Design Patterns:
+Adaper - Message Broker
+Dependency Injection - IOC
+
+Services:
+MapEntityService:
+Clean:
+Core, Infrastructure, Web API
+S - Each class has its own resposibility
+O - Each class is open to extension but closed for modifaction
+	For example: MapEntityService IS NOT: --insert explenation: IHandleMapEntityCMD--
+L - Not relevante in current case
+I - Implemant seregation by using only the functionality relevant to handle to entity
+D - Dependency inversion by depending on abstartion of ILogger, IPublisher, IMapEntityValidationService.
+
+
+MessageBroker:
+Clean:(Publisher)
+Core, Infrastructure, Presentation - docker container - RabbitMq offical image
+S - Each class has its own resposibility
+O - Open closed - using interface implementation of IPublisherAdapter
+L - Liskov is not relevant in this class (Publisher)
+I- Interface Seregation - IPublisher exposed Publish method
+D - Dependency Inversion - Using abstraction of IPublisherAdapter
