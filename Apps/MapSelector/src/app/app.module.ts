@@ -18,7 +18,7 @@ import { MapEntityComponent } from './components/map-entity/map-entity.component
 import { RouterModule, Routes } from '@angular/router';
 import { MapRepositoryComponent } from './components/map-repository/map-repository.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
-import { MapUploadComponent } from './map-upload/map-upload.component';
+import { MapUploadComponent } from './components/map-upload/map-upload.component';
 
 const appRoutes: Routes = [
   { path: '', component: MapEntityComponent },

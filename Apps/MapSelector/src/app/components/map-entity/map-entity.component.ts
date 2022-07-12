@@ -36,4 +36,6 @@ export class MapEntityComponent implements OnInit {
       });
     return false;
   }
+  
+  delete(){}
 }
