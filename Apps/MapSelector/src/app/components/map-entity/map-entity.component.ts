@@ -8,10 +8,17 @@ import { MapEntityService } from '../../services/map-entity.service';
 })
 export class MapEntityComponent implements OnInit {
   addedEntityStatus: string = '';
+  missionMapName: string = '';
 
   constructor(private mapEntityService: MapEntityService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mapEntityService.getMissionMap().subscribe((dto) => {
+      if (dto.success) {
+        this.missionMapName = dto.mapName;
+      }
+    });
+  }
 
   addEntity(title: string, lat: string, lon: string) {
     this.mapEntityService

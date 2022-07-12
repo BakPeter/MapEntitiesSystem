@@ -1,59 +1,68 @@
-<form>
-  <div>
-    <div>
-      <mat-form-field>
-        <input
-          matInput
-          #titleInput
-          required
-          type="text"
-          placeholder="Title:"
-          autocomplete="off"
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <input
-          matInput
-          #latInput
-          required
-          type="number"
-          placeholder="Lat:"
-          autocomplete="off"
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <input
-          matInput
-          #lonInput
-          required
-          type="number"
-          placeholder="Lon:"
-          autocomplete="off"
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <button
-        [disabled]="
-          !(
-            titleInput.checkValidity() &&
-            latInput.checkValidity() &&
-            lonInput.checkValidity()
-          )
-        "
-        mat-raised-button
-        color="primary"
-        (click)="addEntity(titleInput.value, latInput.value, lonInput.value)"
-      >
-        Add
-      </button>
-    </div>
-    <div>
-      {{ addedEntityStatus }}
-    </div>
+<div style="display: table">
+  <div style="display: table-cell; vertical-align: top">
+    <form>
+      <div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              #titleInput
+              required
+              type="text"
+              placeholder="Title:"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              #latInput
+              required
+              type="number"
+              placeholder="Lat:"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              #lonInput
+              required
+              type="number"
+              placeholder="Lon:"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <button
+            [disabled]="
+              !(
+                titleInput.checkValidity() &&
+                latInput.checkValidity() &&
+                lonInput.checkValidity()
+              )
+            "
+            mat-raised-button
+            color="primary"
+            (click)="
+              addEntity(titleInput.value, latInput.value, lonInput.value)
+            "
+          >
+            Add
+          </button>
+        </div>
+        <div>
+          {{ addedEntityStatus }}
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+  <div style="display: table-cell; padding-left: 20px">
+    <app-map-view mapName="{{ missionMapName }}"></app-map-view>
+  </div>
+</div>

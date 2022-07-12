@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MapEntityService } from '../../services/map-entity.service';
 
@@ -16,13 +16,17 @@ export class MapViewComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {
-    this.mapEntityService.getMapBase64(this.mapName).subscribe((dto) => {
-      if (dto.success) {
-        this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl(
-          'data:image;base64,' + dto.mapBase64
-        );
-      }
-    });
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.mapName.length > 0) {
+      this.mapEntityService.getMapBase64(this.mapName).subscribe((dto) => {
+        if (dto.success) {
+          this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl(
+            'data:image;base64,' + dto.mapBase64
+          );
+        }
+      });
+    }
   }
 }
