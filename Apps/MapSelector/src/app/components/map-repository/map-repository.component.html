@@ -1,6 +1,11 @@
 <table>
   <tbody>
     <tr>
+      <td>
+        <app-map-upload></app-map-upload>
+      </td>
+    </tr>
+    <tr>
       <td class="cellTop">
         <mat-selection-list
           #mapsList
@@ -27,7 +32,7 @@
           </mat-list-option>
         </mat-selection-list>
       </td>
-      <td class="imageCell">          
+      <td class="imageCell">
         <app-map-view mapName="{{ selectedMap }}"></app-map-view>
         <div>
           <button
