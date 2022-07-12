@@ -1,4 +1,5 @@
 -Microservices-
+Advantages:
 Scalability (running several containers of the same image)
 Loosly coupled (container can be replaced / changed without changing other components)
 Not depended on OS / hardware - only dependent on Docker
@@ -6,8 +7,23 @@ Not depended on location (could be on cloud / different locations)
 Highly maintainable and testable.
 Technology flexibillity - individual units are fast and easy to deploy.
 Reliabillity - changes can be deployed without threat of bringing down the entire application.
+Loosly coupled to vendor or technology
 
---Add disadvantages--
+Disadvantages
+Communication between services is complex
+More services equals more resources:
+Global testing is difficult
+Debugging problems can be harder
+Deployment challengers
+Large vs small product companies
+
+--SOLID--
+S - The single-responsibility principle: every class should have only one responsibility.
+O - The open–closed principle: Software entities ... should be open for extension, but closed for modification.
+L - The Liskov substitution principle: Functions that use pointers or references to base classes 
+    must be able to use objects of derived classes without knowing it.
+I - The interface segregation principle: Many client-specific interfaces are better than one general-purpose interface.
+D - The dependency inversion principle: "Depend upon abstractions, [not] concretions.
 
 
 Design Patterns:
