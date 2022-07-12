@@ -27,9 +27,8 @@
           </mat-list-option>
         </mat-selection-list>
       </td>
-      <td class="imageCell">
-        <img [src]="imagePath" class="imageItem" />        
-        <!-- <app-map-view mapName={{selectedMap}}></app-map-view> -->
+      <td class="imageCell">          
+        <app-map-view mapName="{{ selectedMap }}"></app-map-view>
         <div>
           <button
             [disabled]="
