@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapEntityService } from '../../services/map-entity.service';
+import { MapPoint } from '../../models/MapPoint';
 
 @Component({
   selector: 'app-map-entity',
@@ -9,6 +10,7 @@ import { MapEntityService } from '../../services/map-entity.service';
 export class MapEntityComponent implements OnInit {
   addedEntityStatus: string = '';
   missionMapName: string = '';
+  points: Array<MapPoint> = [];
 
   constructor(private mapEntityService: MapEntityService) {}
 
@@ -24,9 +26,13 @@ export class MapEntityComponent implements OnInit {
     this.mapEntityService
       .addMapEntity(title, Number.parseFloat(lat), Number.parseFloat(lon))
       .subscribe((result) => {
-        this.addedEntityStatus = result.success
-          ? `${title} added at ${lat},${lon}`
-          : result.errorMessage;
+        if (result.success) {
+          this.points.push({
+            title: title,
+            lat: Number.parseFloat(lat),
+            lon: Number.parseFloat(lon),
+          });
+        }
       });
     return false;
   }

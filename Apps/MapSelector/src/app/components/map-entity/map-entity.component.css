@@ -8,3 +8,21 @@
   font-style: italic;
   line-height: 40px;
 }
+
+.pointsHolder {
+  position: absolute;
+}
+
+.point {
+  cursor: pointer;
+  color: white;
+  position: relative;
+  background-color: #006699;
+  padding: 4px;
+  border-radius: 8px;
+  border: solid 1px #cccccc;
+  display: inline;
+}
+.point:hover {
+  background-color: green;
+}
