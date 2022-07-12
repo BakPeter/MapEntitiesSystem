@@ -33,8 +33,7 @@
         </mat-selection-list>
       </td>
       <td class="imageCell">
-        <app-map-view mapName="{{ selectedMap }}"></app-map-view>
-        <div>
+        <div style="position: absolute; margin-left: 5px;margin-top: 15px;">
           <button
             [disabled]="
               mapsList.selectedOptions.selected[0] == null ||
@@ -47,6 +46,7 @@
             Set mission map
           </button>
         </div>
+        <app-map-view mapName="{{ selectedMap }}"></app-map-view>
       </td>
     </tr>
   </tbody>
