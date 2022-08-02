@@ -1,6 +1,7 @@
 ﻿using MapEntitiesService.Core.Configurations;
 using MapEntitiesService.Core.Model;
 using MapEntitiesService.Core.Services.Interfaces;
+using MapEntitiesService.Core.Validation.Interfaces;
 using MessageBroker.Core;
 using Microsoft.Extensions.Logging;
 
@@ -10,13 +11,13 @@ public class MapEntityService : IMapEntityService
 {
     private readonly ILogger<MapEntityService> _logger;
     private readonly IPublisher _publisher;
-    private readonly IMapEntityValidationService _entityValidator;
+    private readonly IMapEntityValidator _entityValidator;
     private readonly Settings _settings;
 
     public MapEntityService(
         ILogger<MapEntityService> logger,
         IPublisher publisher,
-        IMapEntityValidationService entityValidator,
+        IMapEntityValidator entityValidator,
         Settings settings)
     {
         _logger = logger;

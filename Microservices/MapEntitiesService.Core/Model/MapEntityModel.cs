@@ -10,6 +10,6 @@ public class MapEntityModel
 
     public override string ToString()
     {
-        return   JsonSerializer.Serialize(this);
+        return JsonSerializer.Serialize(this);
     }
-} 
+}
